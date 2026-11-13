@@ -246,13 +246,13 @@
     <tr><th>الفئة</th><th>أمثلة</th></tr>
     <tr><td><b>مساعد محادثة عام</b></td><td><div class="tools s"><span><img src="../assets/img/logos/chatgpt.svg" alt="">ChatGPT</span><span><img src="../assets/img/logos/claude.svg" alt="">Claude</span><span><img src="../assets/img/logos/gemini.svg" alt="">Gemini</span><span><img src="../assets/img/logos/copilot.svg" alt="">Copilot</span><span><img src="../assets/img/logos/deepseek.svg" alt="">DeepSeek</span><span><img src="../assets/img/logos/qwen.svg" alt="">Qwen</span></div></td></tr>
     <tr><td><b>تطبيقات سعودية</b></td><td><div class="tools s"><span><img src="../assets/img/logos/humain.svg" alt="">HUMAIN Chat (علّام)</span><span><img src="../assets/img/logos/intella.svg" alt="">Intella</span><span><img src="../assets/img/logos/lucidya.svg" alt="">Lucidya</span></div></td></tr>
-    <tr><td><b>بحث بمصادر ومعرفة</b></td><td><div class="tools s"><span><img src="../assets/img/logos/perplexity.svg" alt="">Perplexity</span><span><img src="../assets/img/logos/gemini.svg" alt="">NotebookLM</span></div></td></tr>
+    <tr><td><b>بحث بمصادر ومعرفة</b></td><td><div class="tools s"><span><img src="../assets/img/logos/perplexity.svg" alt="">Perplexity</span><span><img src="../assets/img/logos/gemini.svg" alt="">Gemini Notebook</span></div></td></tr>
     <tr><td><b>داخل برامج المكتب</b></td><td><div class="tools s"><span><img src="../assets/img/logos/copilot.svg" alt="">Microsoft 365 Copilot</span><span><img src="../assets/img/logos/gemini.svg" alt="">Gemini في Workspace</span></div></td></tr>
     <tr><td><b>وكلاء وبناء</b></td><td><div class="tools s"><span><img src="../assets/img/logos/manus.svg" alt="">Manus</span><span><img src="../assets/img/logos/lovable.svg" alt="">Lovable</span><span><img src="../assets/img/logos/replit.svg" alt="">Replit</span></div></td></tr>
   </table>
   <div class="callout note small mt-s"><b>ترتيب النماذج العام</b> يقيس مهام عامة، غالبًا بالإنجليزية. لا يغني عن تجربة مهمتك أنت بمعيار قبولك.</div>
   <p class="xsmall muted mt-s">أسماء التطبيقات أمثلة توضيحية فقط، ولا تُعدّ ترشيحًا أو اعتمادًا. تتغيّر الميزات والإتاحة في المملكة بسرعة؛ تحقّق منها عند الاستخدام.</p>
-  <aside class="notes"><p>الأسماء أمثلة لا ترشيحات، ويختار المشارك ما يتاح له. ابدأ دائمًا بالسؤال: هل في جهتي مساعد معتمد؟ المساعد المعتمد هو الوحيد الذي يجوز أن يستقبل ملفًا «مقيدًا» (الجلسة 2). لا تعِد بميزة لم تجرّبها هذا الشهر في القاعة.</p></aside>
+  <aside class="notes"><p>الأسماء أمثلة لا ترشيحات، ويختار المشارك ما يتاح له. Gemini Notebook هو الاسم الجديد لـ NotebookLM منذ يوليو 2026؛ قد يعرفه بعض المشاركين بالاسم القديم. ابدأ دائمًا بالسؤال: هل في جهتي مساعد معتمد؟ المساعد المعتمد هو الوحيد الذي يجوز أن يستقبل ملفًا «مقيدًا» (الجلسة 2). لا تعِد بميزة لم تجرّبها هذا الشهر في القاعة.</p></aside>
 </section>
 <section class="slide" data-label="أنماط التعاون" id="atmta-wtazyz-wtwkyl" data-lo="LO7">
   <div class="kicker">ثلاث طرق للعمل مع الذكاء الاصطناعي</div>
@@ -688,11 +688,11 @@
   <div class="kicker">نقطة تحقق</div>
   <h2>المهمة نفسها، والنتيجة الثانية أفضل</h2>
   <div class="quiz" data-type="single" data-lo="LO1">
-    <p class="lead">أرسلت الطلب نفسه في محادثتين، فجاءت الثانية بنبرة جمهورك ومصطلحاتك دون أن تذكرها. ما التفسير الأرجح؟</p>
+    <p class="lead">أرسلت الطلب نفسه حرفيًا في محادثتين، الأولى صباحًا والثانية بعد المختبر، فجاءت الثانية بنبرة جمهورك ومصطلحاتك دون أن تذكرها. ما التفسير الأرجح؟</p>
     <div class="opts">
       <div class="opt" data-why="يظن أن النموذج يتعلم من كل محادثة: النموذج لا يتغير بين محادثاتك">النموذج تعلّم من المحادثة الأولى وحسّن نفسه</div>
       <div class="opt" data-why="يرد الفرق إلى الصدفة وحدها: التباين موجود، لكنه لا يفسر تطابق المصطلحات">الصدفة: المساعد يعطي نتائج مختلفة في كل مرة</div>
-      <div class="opt" data-why="يخلط بين الطلب والسياق: الطلب لم يتغير بين المحادثتين">الطلب الثاني كان أوضح من الأول</div>
+      <div class="opt" data-why="يرد الفرق إلى تحديث النموذج: النموذج الأحدث لا يعرف مصطلحات جمهورك ما لم تُرسل إليه">التطبيق حدّث نموذجه بين المحادثتين إلى نسخة أذكى</div>
       <div class="opt" data-ok>وثيقة السياق في التعليمات الدائمة أُرسلت مع المحادثة الثانية</div>
     </div>
     <div class="callout tip why"><b>لماذا.</b> النموذج لا يتعلم بين المحادثات. التعليمات الدائمة تُرسل مع كل محادثة، فتعرف من أنت قبل أن تكتب طلبك.</div>
