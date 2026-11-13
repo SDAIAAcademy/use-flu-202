@@ -488,6 +488,154 @@ def lab_3_4():
     assert all(who[n] == "لي وحدي" for n in checking)  # the checks are not delegated to the assistant
     print("  who:", dict(Counter(who.values())))
 
+# =============================================================== Day 4
+INJECTION_MARKS = ("لأي مساعد", "تعليمات معتمدة", "لا تنتظر موافقة")
+
+
+def run_agent(plan, policy, approvals):
+    """The permission layer of Lab 4.1: every action of the plan is allowed, blocked or held for approval."""
+    log = []
+    for step in plan:
+        kind = step["do"]
+        if kind == "read":
+            path = step["path"]
+            if path in policy.get("deny_read", []) or not any(path.startswith(p) for p in policy["read"]):
+                log.append(("blocked", f"read {path}", "outside the connector's scope"))
+            else:
+                assert (FILES / path).exists(), path  # an allowed read is a real file of the pack
+                log.append(("allowed", f"read {path}", ""))
+        elif kind == "write":
+            ok = any(step["path"].startswith(p) for p in policy["write"])
+            log.append(("allowed" if ok else "blocked", f"write {step['path']}", "" if ok else "not a drafts folder"))
+        elif kind == "send":
+            to = ", ".join(step["to"])
+            outside = [a for a in step["to"] if a not in policy["allowed_recipients"]]
+            attach = step.get("attach", "")
+            if outside:
+                log.append(("blocked", f"send to {to}", "recipient not on the approved list"))
+            elif attach in policy.get("deny_read", []):
+                log.append(("blocked", f"send to {to}", "attachment outside the scope"))
+            elif policy["send"] == "approval" and to not in approvals:
+                log.append(("held", f"send to {to}", f"waits for {policy['approver']}"))
+            else:
+                log.append(("sent", f"send to {to}", f"approved by {policy['approver']}" if policy["send"] == "approval" else ""))
+    return log
+
+
+@lab("4.1")
+def lab_4_1():
+    for start in ("agent_task.txt", "agent_run_log.md"):
+        assert (FILES / "start" / start).exists(), start
+    mailbox = sorted((FILES / "shared_mailbox").glob("*.txt"))
+    planted = [p.name for p in mailbox if any(m in p.read_text(encoding="utf-8") for m in INJECTION_MARKS)]
+    print("  mailbox items that address the assistant:", planted)
+    assert planted == ["03_partner_digest.txt"]
+    restricted = docx_text(FILES / "circulars" / "C-2026-121_22oct.docx")
+    assert "سري" in restricted or "مقيد" in restricted or "مقيّد" in restricted
+    policy = json.loads(ref("D4_1_permissions.json"))
+    plan = STANDIN["4.1"]["plan"]
+    injected = [s for s in plan if s.get("because") == "injected"]
+    assert len(injected) == 2
+    wide = {"read": [""], "write": [""], "send": "direct", "allowed_recipients": sorted({a for s in plan for a in s.get("to", [])})}
+    harm = [e for e, s in zip(run_agent(plan, wide, set()), plan) if s.get("because") == "injected" and e[0] in ("allowed", "sent")]
+    print(f"  with wide permissions and no approval: {len(harm)} injected actions run")
+    assert len(harm) == 2
+    log = run_agent(plan, policy, approvals=set())
+    for state, action, why in log:
+        if state != "allowed":
+            print(f"    {state}: {action} ({why})")
+    states = Counter(e[0] for e in log)
+    print("  with least privilege:", dict(states))
+    assert states == {"allowed": 11, "blocked": 2, "held": 1}, states
+    for (state, _, _), step in zip(log, plan):
+        if step.get("because") == "injected":
+            assert state == "blocked"
+    approved = run_agent(plan, policy, approvals={"beneficiary-services@alwaha-ssc.example"})
+    assert Counter(e[0] for e in approved) == {"allowed": 11, "blocked": 2, "sent": 1}
+    print("  after the approval: 1 message sent, to the approved list only")
+    run_log = ref("D4_1_run_log.md")
+    for must in ("خطوة الموافقة", "ملاحظة المخاطر", "C-2026-121", "03"):
+        assert must in run_log, must
+
+
+def missing_parts(text, parts):
+    return [p for p in parts if p not in text]
+
+
+@lab("4.2")
+def lab_4_2():
+    assert (FILES / "start" / "tracker_need.txt").exists()
+    sections = ("## المشكلة", "## المستخدمون", "## الوظائف", "## البيانات", "## القيود", "## خارج النطاق", "## فحوص القبول")
+    reqs = ref("D4_2_requirements.md")
+    assert not missing_parts(reqs, sections)
+    checks = re.findall(r"^\d\. .+الخطوات: .+المتوقع: .+$", reqs.split("## فحوص القبول")[1], flags=re.M)
+    print(f"  requirements: {len(sections)} sections, {len(checks)} acceptance checks with steps and an expected result")
+    assert len(checks) == 3
+    assert "بيئة الإنتاج" in reqs.split("## خارج النطاق")[1].split("##")[0]  # production stays out of scope
+    assert not (ID_RE.search(reqs) or MOBILE_RE.search(reqs) or EMAIL_RE.search(reqs))
+    agents = ref("D4_2_AGENTS.md")
+    rules = ("تعديل واحد", "بيانات تجريبية", "فحوص القبول الثلاثة", "لا تنشر", "اعرض خطتك")
+    assert not missing_parts(agents, rules)
+    print(f"  AGENTS.md: {len(rules)} working rules present, {words(agents)} words")
+    assert reqs == (FILES / "start" / "tracker_requirements.md").read_text(encoding="utf-8")  # Lab 4.3 starts from the same text
+    weak = STANDIN["4.2"]["weak_requirements"]
+    gaps = missing_parts(weak, sections)
+    print(f"  stand-in requirements: {len(gaps)} of {len(sections)} sections missing, no acceptance check")
+    assert len(gaps) == 7 and "المتوقع" not in weak
+
+
+@lab("4.3")
+def lab_4_3():
+    import shutil
+    import subprocess
+    node = shutil.which("node")
+    assert node, "Node.js is needed to run the prototype's checks"
+    folder = REF / "tracker"
+    for name in ("tracker.js", "tracker.html", "test.cjs"):
+        assert (folder / name).exists(), name
+    assert 'src="tracker.js"' in (folder / "tracker.html").read_text(encoding="utf-8")  # the page uses the tested rules
+
+    def run(*args):
+        r = subprocess.run([node, "test.cjs", *args], cwd=folder, capture_output=True, text=True, encoding="utf-8")
+        for line in r.stdout.strip().splitlines():
+            print("    " + line)
+        return r.returncode, r.stdout
+
+    print("  the builder's first version:")
+    code, out = run("--first")
+    assert code == 1 and "2 of 3 checks pass" in out and "FAIL check 1" in out
+    print("  the reference prototype:")
+    code, out = run()
+    assert code == 0 and "3 of 3 checks pass" in out
+    record = ref("D4_3_test_record.md")
+    assert record.count("نجح") == 5 and record.count("فشل") == 1
+
+
+@lab("4.4")
+def lab_4_4():
+    template = (FILES / "start" / "adoption_plan_template.md").read_text(encoding="utf-8")
+    plan = ref("D4_4_plan.md")
+    heads = re.findall(r"^#{2,3} .+$", template, flags=re.M)
+    assert not missing_parts(plan, heads), missing_parts(plan, heads)  # the plan fills the template's sections
+
+    def bullets(title):
+        return [l for l in plan.split(title)[1].split("\n## ")[0].splitlines() if l.startswith("- ")]
+
+    ai_off, checks = bullets("## مهام تبقى دون ذكاء اصطناعي"), bullets("## فحوص قبل المشاركة")
+    print(f"  plan: {len(ai_off)} tasks kept AI-off, {len(checks)} checks before sharing, {words(plan)} words")
+    assert len(ai_off) >= 2 and len(checks) >= 2 and words(plan) <= 450
+    for horizon in ("### يوم واحد", "### سبعة أيام", "### ثلاثون يومًا"):
+        assert len(plan.split(horizon)[1].split("\n#")[0].strip()) > 20, horizon
+    board = {k: int(v) for k, v in re.findall(r"- (خط الأساس|التجربة الأولى|التجربة الثانية) \(دقيقة\): (\d+)", plan)}
+    base, t1, t2 = board["خط الأساس"], board["التجربة الأولى"], board["التجربة الثانية"]
+    print(f"  board: baseline {base} min; trial 1 {t1} min ({round(100 * (base - t1) / base)}% less); "
+          f"trial 2 {t2} min ({round(100 * (base - t2) / base)}% less)")
+    assert base == 245 and t2 == 105
+    spoken = {"دقيقة": 1, "دقيقتان": 2}
+    talk = sum(spoken[m] for m in re.findall(r"^- (دقيقة|دقيقتان):", plan.split("## عرضي في ست دقائق")[1], flags=re.M))
+    print(f"  the talk adds up to {talk} minutes")
+    assert talk == 6
+
 
 def main(argv):
     wanted = argv or list(LABS_RUN)
