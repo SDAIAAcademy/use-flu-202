@@ -1,68 +1,175 @@
-# رفع الإنتاجية بالذكاء الاصطناعي · AI Productivity
+<!-- academy:title -->
+# إنتاجية العمل المعرفي بالذكاء الاصطناعي
 
-**SDAIA Academy · Data & AI Fluency Track**: a 4-day hands-on course (4 sessions per day) plus a capstone presentation day,
-delivered in Arabic. It takes employees and undergraduates from "I tried ChatGPT" to measured, safe, repeatable gains:
-decide what to delegate, describe it precisely, check what comes back and own the result, across writing, documents,
-data, research, custom assistants, agents and small apps built by describing them. No programming.
+AI Productivity for Knowledge Work
 
-**Course page:** https://sdaiaacademy.github.io/productivity/ (Arabic, right to left).
+مسار الطلاقة في البيانات والذكاء الاصطناعي · أكاديمية سدايا · USE-FLU-202 · المستوى 200
 
-| Day | Theme | Slides | Labs |
+تقرّر ما تفوّضه للذكاء الاصطناعي، وتصفه بدقة، وتتحقق مما يعود، وتقيس المكسب على خط أساس: في الكتابة والبيانات والبحث والمساعدات والوكلاء والأدوات الصغيرة
+
+مقرر الأكاديمية المنشور، ومدته أربعة أيام ويوم للمشروع الختامي، ويُقدَّم بالعربية أولًا. يتناول اليوم الأول مواضع نفع الذكاء الاصطناعي وضرره، والاستخدام الآمن، والطلبات المهيكلة ذات السياق الدائم. ويطبقها اليوم الثاني على الكتابة بالعربية والإنجليزية، والقراءة والاستخراج، وجداول البيانات والعروض التقديمية. ويتناول اليوم الثالث البحث المعمق مع التحقق، والدفاتر المستندة إلى المصادر، والمساعدات المخصصة، وإعادة تصميم مسارات العمل. ويقدم اليوم الرابع الوكلاء مع الموصِّلات والموافقات، وبناء أداة صغيرة انطلاقًا من وثيقة متطلبات. وفي المشروع الختامي يعيد كل مشارك تصميم مهمة حقيقية متكررة ويقيس المكسب في تجربتين مقارنةً بخط الأساس.
+
+**الصيغة:** دورة مكثفة: 4 أيام تدريبية في كل منها أربع جلسات ويوم للمشروع الختامي، مع عمل تحضيري موجه ومهمة متابعة متعقَّبة مدتها 30 يومًا
+
+**صفحة المقرر:** https://sdaiaacademy.github.io/productivity/
+<!-- /academy:title -->
+
+## دراسة الحالة
+
+المقرر كله يجري في جهة واحدة: **مركز الواحة للخدمات المشتركة**، مركز حكومي افتراضي يقدّم خدمات الموارد البشرية والمالية
+والمشتريات وخدمة المستفيدين لست جهات حكومية. يعمل المشارك موظفًا في إدارة خدمة المستفيدين، ويهيئ في اليوم الثالث
+**مُرشد**، مساعد أسئلة الموظفين.
+
+كل ملفات المختبرات اصطناعية ومولّدة ببذرة ثابتة، وفيها مشكلات مقصودة تشبه الواقع: رقمان مختلفان للرضا في تقرير واحد،
+وصفوف مكررة في جدول الاستفسارات، وتعارض بين وثيقتين في مهلة التظلم، وتعليمة مزروعة في صندوق بريد مشترك. لا تكشف
+الملفات بيانات أي شخص أو جهة حقيقية، ومفتاح إجاباتها للمدرب في `labs/solutions/`.
+
+## النواتج وأدلتها
+
+| الناتج | ما يفعله المشارك | الدليل |
+|---|---|---|
+| 1 | يطبق نمطًا مهيكلًا للطلبات ذا سياق دائم على الكتابة والتلخيص والاستخراج بالعربية والإنجليزية | مخرجات تستوفي قائمة تحقق للدقة والمستوى اللغوي والتنسيق، مع الطلبات المستخدمة |
+| 2 | يحلل جدول بيانات بمساعد وينتج رسمًا وملخصًا، ويتحقق من كل رقم بإعادة حسابه | ملخص تتطابق أرقامه مع جدول أُعيد حسابه بصورة مستقلة |
+| 3 | يعدّ موجز بحث ببحث معمق ودفتر مستند إلى المصادر، ويتتبع كل ادعاء رئيسي إلى مصدر يدعمه | موجز مع سجل تحقق لادعاءاته الرئيسية الخمسة |
+| 4 | يهيئ مساعدًا مخصصًا بتعليمات وملفات مرجعية وأسئلة اختبار | الإعداد ونتائجه على عشرة أسئلة اختبار، مع حالات الإخفاق |
+| 5 | يهيئ تشغيل وكيل بموصِّل وأقل الصلاحيات وخطوة موافقة بشرية، ويحدد خطر حقن الأوامر | سجل تشغيل يُظهر خطوة الموافقة، وملاحظة قصيرة عن المخاطر |
+| 6 | يصوغ وثيقة متطلبات لأداة داخلية صغيرة، ويبني نموذجًا أوليًا ويختبره بثلاثة فحوص | وثيقة المتطلبات والنموذج الأولي وسجل الاختبار |
+| 7 | يصمم نسخة مدعومة بالذكاء الاصطناعي من مهمة حقيقية متكررة، ويقيس التغير على خط الأساس في تجربتين | ملف المشروع الختامي، يُناقش مباشرة |
+| 8 | يعدّ خطة تبنٍّ شخصية ليوم وسبعة أيام وثلاثين يومًا | خطة من صفحة واحدة تُراجع في المناقشة وتُتابع بعد 30 يومًا |
+
+<!-- academy:units -->
+## الوحدات
+
+| الوحدة | العنوان | الجلسات | الشرائح |
 |---|---|---|---|
-| 1 | أساسيات العمل مع الذكاء الاصطناعي · Foundations: fluency, limits, safe use and prompting | [day1](https://sdaiaacademy.github.io/productivity/slides/day1.html) | 1.1 to 1.4 |
-| 2 | الإنتاجية في المهام اليومية · Everyday work: write, read, analyse, present | [day2](https://sdaiaacademy.github.io/productivity/slides/day2.html) | 2.1 to 2.4 |
-| 3 | البحث والمعرفة وإعادة تصميم العمل · Research, knowledge and workflows | [day3](https://sdaiaacademy.github.io/productivity/slides/day3.html) | 3.1 to 3.4 |
-| 4 | الوكلاء والبرمجة التوليدية والتبنّي · Agents, vibe coding and adoption | [day4](https://sdaiaacademy.github.io/productivity/slides/day4.html) | 4.1 to 4.4 |
-| 5 | عروض المشروع الختامي · Capstone presentations | [day5](https://sdaiaacademy.github.io/productivity/slides/day5.html) | [capstone](https://sdaiaacademy.github.io/productivity/labs/capstone.html) |
+| اليوم 1 | الأساس: أين يساعد الذكاء الاصطناعي وأين يضرّ | أين يساعد وأين يضرّ; التصنيف قبل المشاركة; الطلب المهيكل; الحوار والسياق الدائم | [`slides/day1.html`](slides/day1.html) |
+| اليوم 2 | المهام اليومية | الكتابة والمستوى اللغوي; القراءة والاستخراج; الجداول والتحقق من الأرقام; العروض والصور | [`slides/day2.html`](slides/day2.html) |
+| اليوم 3 | البحث والمعرفة الموثوقة | البحث المعمق والتحقق; الدفاتر المستندة إلى المصادر; المساعدات المخصصة; إعادة تصميم سير العمل | [`slides/day3.html`](slides/day3.html) |
+| اليوم 4 | الوكلاء والأدوات الصغيرة والتبنّي المسؤول | الوكلاء والموصِّلات; من الفكرة إلى المتطلبات; ابنِ واختبر وشارك; التبنّي المسؤول | [`slides/day4.html`](slides/day4.html) |
+| المشروع الختامي | عروض المشروع الختامي |  | [`slides/day5.html`](slides/day5.html) |
+<!-- /academy:units -->
 
-Each day has four sessions. Every session is about 20–25
-minutes of concepts and live demos followed by a 25-minute lab in real AI applications (ChatGPT, Claude, Gemini, Microsoft
-Copilot, HUMAIN Chat, Gemini Notebook, deep research, custom assistants, agents and vibe-coding platforms such as Etlaq,
-Lovable, Replit and Google AI Studio). Free tiers are enough for most labs, and every lab names a fallback.
+<!-- academy:labs -->
+## المختبرات
 
-The whole week follows one case study: **مركز الواحة للخدمات المشتركة** (Al-Waha Shared Services Center), a fictional
-government shared-services center, with a synthetic file pack generated by `labs/tools/prepare_files.py`.
-Undergraduates play a co-op trainee at the center, and most labs have a study variant.
+كل مختبر صفحة في `labs/` تُفتح من صفحة المقرر ومن شريحة المختبر في جلسته.
 
-## Repository
+| | الجلسة | المختبر | الملف |
+|---|---|---|---|
+| 1.1 | اليوم 1 · الجلسة 1 | خريطة أسبوع في مركز الواحة | [`D1_1_task_map.html`](labs/D1_1_task_map.html) |
+| 1.2 | اليوم 1 · الجلسة 2 | صنّف قبل أن تشارك | [`D1_2_classify.html`](labs/D1_2_classify.html) |
+| 1.3 | اليوم 1 · الجلسة 3 | من طلب عام إلى طلب مهيكل | [`D1_3_rice.html`](labs/D1_3_rice.html) |
+| 1.4 | اليوم 1 · الجلسة 4 | وثيقة السياق ومكتبة الطلبات | [`D1_4_context_library.html`](labs/D1_4_context_library.html) |
+| 2.1 | اليوم 2 · الجلسة 1 | خطاب رسمي بمستويين وملخص إنجليزي | [`D2_1_letter.html`](labs/D2_1_letter.html) |
+| 2.2 | اليوم 2 · الجلسة 2 | عشرون نموذجًا في جدول واحد | [`D2_2_forms.html`](labs/D2_2_forms.html) |
+| 2.3 | اليوم 2 · الجلسة 3 | حلّل الاستفسارات وطابق كل رقم | [`D2_3_reconcile.html`](labs/D2_3_reconcile.html) |
+| 2.4 | اليوم 2 · الجلسة 4 | عرض قصير وصور من موجز | [`D2_4_decision_deck.html`](labs/D2_4_decision_deck.html) |
+| 3.1 | اليوم 3 · الجلسة 1 | موجز بحث وسجل تحقق | [`D3_1_research_brief.html`](labs/D3_1_research_brief.html) |
+| 3.2 | اليوم 3 · الجلسة 2 | دفتر دليل الموظفين | [`D3_2_ask_our_policies.html`](labs/D3_2_ask_our_policies.html) |
+| 3.3 | اليوم 3 · الجلسة 3 | مُرشد: مساعد أسئلة الموظفين | [`D3_3_custom_assistant.html`](labs/D3_3_custom_assistant.html) |
+| 3.4 | اليوم 3 · الجلسة 4 | أعد تصميم التقرير الشهري | [`D3_4_workflow_redesign.html`](labs/D3_4_workflow_redesign.html) |
+| 4.1 | اليوم 4 · الجلسة 1 | وكيل بموصِّل واحد وخطوة موافقة | [`D4_1_agent_connector.html`](labs/D4_1_agent_connector.html) |
+| 4.2 | اليوم 4 · الجلسة 2 | وثيقة المتطلبات وملف تعليمات الوكيل | [`D4_2_idea_to_spec.html`](labs/D4_2_idea_to_spec.html) |
+| 4.3 | اليوم 4 · الجلسة 3 | ابنِ النموذج الأولي واختبره | [`D4_3_build_it.html`](labs/D4_3_build_it.html) |
+| 4.4 | اليوم 4 · الجلسة 4 | خطة التبنّي ولوحة المشروع | [`D4_4_adoption_plan.html`](labs/D4_4_adoption_plan.html) |
+<!-- /academy:labs -->
+
+المختبرات صفحات إرشادية، لا كود يكتبه المشارك. كل مختبر يبدأ من ملفات جاهزة في `labs/files/`، وله حل مرجعي في
+`labs/solutions/`. تكفي الخطط المجانية للمساعدات، ولا يُنزَّل أي نموذج على الجهاز. التفاصيل في
+[labs/README.md](labs/README.md).
+
+## التقييم
+
+| المكوّن | الوزن |
+|---|---|
+| فحص تحت الإشراف دون ذكاء اصطناعي: يصحح المشارك مخرجًا معيبًا ويكتب فقرة قصيرة بنفسه | 10% |
+| مخرجات المختبرات اليومية | 25% |
+| ملف المشروع الختامي، بمعاييره الستة | 50% |
+| المناقشة المباشرة للمشروع | 15% |
+
+النجاح: 70% في المجموع، و60% على الأقل في معايير المشروع الختامي، و60% على الأقل في الفحص دون ذكاء اصطناعي.
+الذكاء الاصطناعي مسموح كاملًا في المختبرات والمشروع الختامي، وفيها يملك المشارك كل مخرج ويفصح عنه ويدافع عنه؛ وغير
+مسموح في الفحص تحت الإشراف. مواد ذلك الفحص ليست في هذا المستودع.
+
+أسئلة التدريب في `assessments/bank.json`: ثلاثة أسئلة لكل ناتج، ومعها نقاط التحقق في الشرائح.
+
+## المشروع الختامي
+
+مشروع فردي: يعيد المشارك تصميم مهمة حقيقية متكررة من عمله، على مواد اصطناعية أو مجهولة الهوية، ويسلّم رابط مجلد مشترك
+فيه:
+
+- خط الأساس، وتصميم التفويض؛
+- الطلبات المستخدمة، وخطوات التحقق؛
+- سجلات المحادثات والوكلاء، وسجل التوقيت للتجربتين؛
+- خطة التبنّي من صفحة واحدة.
+
+يُقيَّم المجلد بستة معايير: القيمة المقيسة في التجربتين 25، وتصميم مسار العمل والتفويض 20، والوصف 20، والتحقق 15،
+والمسؤولية 10، والعرض 10. ثم مناقشة مباشرة مدتها عشر دقائق يعيد فيها المشارك تشغيل خطوة واحدة ويشرح تحققًا يختاره
+المقيّم. وبعد ثلاثين يومًا مهمة متابعة عن الاستخدام الفعلي.
+
+## المستودع
 
 ```
-index.html          course page
-slides/             one HTML deck per day (Arabic, RTL)
-assets/             tool logos used on the slides and lab pages
-labs/               lab guides (D{day}_{n}_*.html), capstone page, file pack and its generator (see labs/README.md)
+course.json    بيان المقرر: النواتج، والأيام، والجلسات، والمختبرات، والمشروع الختامي، والأدوات، والمصادر
+slides/        عرض لكل يوم
+labs/          صفحات المختبرات، وملفاتها (files/)، وحلولها المرجعية (solutions/)، ومولّد الملفات (_tools/)
+assessments/   أسئلة التدريب
 ```
 
-## Sources
+<!-- academy:tools -->
+## الأدوات
 
-The course design (October 2026) is based on these studies, reports, guidelines and courses.
+كل سطر قدرة، والأمثلة قابلة للتبديل.
 
-**Evidence on AI and productivity**
-- Stanford HAI, [AI Index 2026, Chapter 4: Economy](https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf) and [Chapter 9: Public opinion](https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_9_public_opinion.pdf)
-- Dell'Acqua, Mollick et al., "Navigating the jagged technological frontier" ([summary](https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged); [Organization Science, 2026](https://pubsonline.informs.org/doi/full/10.1287/orsc.2025.21838))
-- METR, [developer productivity RCT, 2026 update](https://metr.org/blog/2026-02-24-uplift-update/)
-- Dillon, Jaffe, Immorlica and Stanton, [Shifting work patterns with generative AI](https://www.nber.org/papers/w33795) (NBER w33795)
-- Chatterji, Deming et al., [How people use ChatGPT](https://www.nber.org/papers/w34255) (NBER w34255)
-- Microsoft, [Work Trend Index 2026](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization) and [Work Trend Index 2025](https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born)
-- Anthropic, [Economic Index: economic primitives](https://www.anthropic.com/research/economic-index-primitives) and [AI assistance and coding skill formation](https://www.anthropic.com/research/AI-assistance-coding-skills)
-- BetterUp Labs and Stanford Social Media Lab, [The hidden costs of workslop](https://www.betterup.com/blog/hidden-costs-workslop)
-- MIT NANDA, The GenAI Divide 2025 ([Fortune coverage](https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo); methodology widely criticised, used as a signal only)
-- The 2025 Australian DEWR report with fabricated references ([CFO Dive](https://www.cfodive.com/news/deloitte-refunds-60k-report-ai-errors-australian-government-accounting/); [CTV News / AP](https://www.ctvnews.ca/business/article/deloitte-to-partially-refund-australian-government-for-report-with-apparent-ai-generated-errors/))
+- **مساعد ذكاء اصطناعي عام الأغراض:** نموذج مفتوح الأوزان يُشغَّل محليًا عبر Open WebUI, ChatGPT, Microsoft Copilot, Gemini, Claude
+- **دفتر مستند إلى المصادر أو مساحة عمل لمشروع:** مجموعات المعرفة في Open WebUI, NotebookLM, مساحة المشاريع أو الملفات في مساعد معتمد
+- **حزمة مكتبية للمستندات وجداول البيانات والعروض التقديمية:** LibreOffice, Microsoft 365, Google Workspace
+- **مساحة عمل للوكلاء بموصِّلات عبر بروتوكول مفتوح:** موصِّلات بروتوكول سياق النموذج (MCP) في عميل وكلاء مفتوح المصدر, وضع الوكيل في مساعد تجاري معتمد
+- **منصة للبرمجة التوليدية لبناء النماذج الأولية:** وكيل برمجة في مساحة عمل معزولة, أداة تعمل في المتصفح لبناء التطبيقات بالذكاء الاصطناعي التوليدي
+- **سجل القياس:** قالب جدول بيانات مشترك, نموذج لتتبع الوقت
+<!-- /academy:tools -->
 
-**Saudi context**
-- SDAIA, [Generative AI guidelines for government entities](https://sdaia.gov.sa/ar/SDAIA/about/Files/GenAIGuidelinesForGovernmentARCompressed.pdf) (2024)
-- SDAIA, [AI ethics principles](https://sdaia.gov.sa/ar/SDAIA/about/Documents/ai-principles.pdf)
-- [Personal Data Protection Law](https://sdaia.gov.sa/ar/SDAIA/about/Documents/PersonalDataProtectionLawAr.pdf) ([English](https://sdaia.gov.sa/ar/SDAIA/about/Documents/Personal%20Data%20English%20V2-23April2023-%20Reviewed-.pdf)) and the [PDPL knowledge center](https://dgp.sdaia.gov.sa/wps/portal/pdp/knowledgecenter)
-- NDMO, [Data management and personal data protection standards](https://sdaia.gov.sa/ndmo/Files/PoliciesEn.pdf) and the [data classification policy](https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf)
-- PwC, [Hopes and Fears 2025: Saudi Arabia](https://www.pwc.com/m1/en/issues/pdf/hopes-and-fears-ksa-2025.pdf); Deloitte, [Digital Consumer Trends 2026 (KSA)](https://www.deloitte.com/middle-east/en/about/press-room/ai-becomes-default-for-saudi-consumers-as-deloittes-2026-digital-consumer-trends-report-reveals-decisive-shift-in-how-the-kingdom-lives.html)
+أسماء الأدوات أمثلة لا توصيات، وتتغير كثيرًا. المختبرات تستخدم مساعدات مستضافة بخططها المجانية، وسياسة جهتك هي المرجع
+في ما يجوز استخدامه في العمل.
 
-**Frameworks and comparable courses**
-- Dakan, Feller and Anthropic, [AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations) (the 4D framework, CC BY-NC-SA 4.0; several activities are adapted from it)
-- Google, [Prompting Essentials](https://www.coursera.org/learn/google-prompting-essentials) and [AI Essentials](https://www.coursera.org/specializations/ai-essentials-google); [OpenAI Academy](https://academy.openai.com/); DeepLearning.AI, [Generative AI for Everyone](https://www.deeplearning.ai/courses/generative-ai-for-everyone/)
-- Model comparison: [Arena](https://arena.ai/) (blind pairwise votes) and [Artificial Analysis](https://artificialanalysis.ai/) (intelligence, speed and price)
-- Caulfield, [SIFT](https://writingcommons.org/section/information-literacy/information-evaluation/sift-stop-investigate-source-find-better-coverage-trace-claims/) (lateral reading)
-- NIST, [AI 600-1: Generative AI profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
+## المراجع الوطنية
 
-**Tools used in the labs** (examples, not endorsements; availability in Saudi Arabia is re-checked before each cohort)
-- [Gemini Notebook](https://notebooklm.google/) (formerly NotebookLM), ChatGPT [projects](https://learn.chatgpt.com/docs/projects), [skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins) and [scheduled tasks](https://learn.chatgpt.com/docs/automations), [Claude Cowork](https://claude.com/docs/cowork)
-- [Etlaq](https://www.etlaq.sa/), [Lovable](https://lovable.dev/), [Replit](https://replit.com/), [Google AI Studio Build](https://ai.studio/build), and the [AGENTS.md](https://agents.md/) convention
+- نظام حماية البيانات الشخصية، وسياسة تصنيف البيانات لمكتب إدارة البيانات الوطنية، وإرشادات الذكاء الاصطناعي التوليدي
+  للجهات الحكومية وللعموم، ومبادئ أخلاقيات الذكاء الاصطناعي: في صفحة الأنظمة والسياسات لدى سدايا،
+  <https://sdaia.gov.sa/ar/SDAIA/about/Pages/RegulationsAndPolicies.aspx>.
+- دليل هندسة الأوامر ودليل البرمجة التوليدية بالذكاء الاصطناعي التوليدي: في مركز المعرفة لدى سدايا،
+  <https://sdaia.gov.sa/en/MediaCenter/KnowledgeCenter/ResearchLibrary/>.
+
+قواعد «مركز الواحة» في المختبرات قواعد تدريبية مستنتجة من هذه المراجع، وليست نصها.
+
+<!-- academy:sources -->
+## المصادر
+
+### أدلة الإنتاجية والقياس
+
+- [Stanford HAI: AI Index 2026, Chapter 4 (Economy)](https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf)
+- [Dell'Acqua, Mollick et al.: Navigating the jagged technological frontier (Organization Science)](https://pubsonline.informs.org/doi/full/10.1287/orsc.2025.21838)
+- [METR: developer productivity study, 2026 update](https://metr.org/blog/2026-02-24-uplift-update/)
+- [Dillon, Jaffe, Immorlica, Stanton: Shifting work patterns with generative AI (NBER w33795)](https://www.nber.org/papers/w33795)
+- [Chatterji, Deming et al.: How people use ChatGPT (NBER w34255)](https://www.nber.org/papers/w34255)
+- [Anthropic Economic Index: economic primitives](https://www.anthropic.com/research/economic-index-primitives)
+- [BetterUp Labs and Stanford Social Media Lab: The hidden costs of workslop](https://www.betterup.com/blog/hidden-costs-workslop)
+- [Microsoft: Work Trend Index 2026](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization)
+
+### المراجع الوطنية
+
+- [سدايا: الأنظمة والسياسات (نظام حماية البيانات الشخصية، وسياسة تصنيف البيانات، ومبادئ أخلاقيات الذكاء الاصطناعي، وإرشادات الذكاء الاصطناعي التوليدي)](https://sdaia.gov.sa/ar/SDAIA/about/Pages/RegulationsAndPolicies.aspx)
+- [نظام حماية البيانات الشخصية](https://sdaia.gov.sa/ar/SDAIA/about/Documents/PersonalDataProtectionLawAr.pdf)
+- [مكتب إدارة البيانات الوطنية: سياسة تصنيف البيانات](https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf)
+- [سدايا: إرشادات الذكاء الاصطناعي التوليدي للجهات الحكومية](https://sdaia.gov.sa/ar/SDAIA/about/Files/GenAIGuidelinesForGovernmentARCompressed.pdf)
+- [سدايا: مبادئ أخلاقيات الذكاء الاصطناعي](https://sdaia.gov.sa/ar/SDAIA/about/Documents/ai-principles.pdf)
+- [سدايا: مركز المعرفة (دليل هندسة الأوامر، ودليل البرمجة التوليدية)](https://sdaia.gov.sa/en/MediaCenter/KnowledgeCenter/ResearchLibrary/)
+
+### الأطر والأساليب
+
+- [Dakan, Feller and Anthropic: AI Fluency, Framework and Foundations (CC BY-NC-SA 4.0)](https://anthropic.skilljar.com/ai-fluency-framework-foundations)
+- [Caulfield: SIFT, the four moves of lateral reading](https://writingcommons.org/section/information-literacy/information-evaluation/sift-stop-investigate-source-find-better-coverage-trace-claims/)
+- [NIST AI 600-1: Generative AI profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
+- [AGENTS.md: the agent instruction file convention](https://agents.md/)
+- [CFO Dive: the 2025 Australian government report with AI-generated errors](https://www.cfodive.com/news/deloitte-refunds-60k-report-ai-errors-australian-government-accounting/)
+<!-- /academy:sources -->

@@ -1,77 +1,89 @@
-# AI Productivity: labs
+# إنتاجية العمل المعرفي بالذكاء الاصطناعي: المختبرات
 
-Lab guides for the SDAIA Academy **AI Productivity (رفع الإنتاجية بالذكاء الاصطناعي)** course. Every lab uses AI applications
-(chat assistants, Gemini Notebook, deep research, custom assistants, agents, app builders), not code. Each guide is an Arabic
-web page with the goal, the files, timed steps with copyable prompts, check questions, a stretch task ✱ and folded
-instructor notes.
+ستة عشر مختبرًا لمقرر أكاديمية سدايا **USE-FLU-202**، مدة كل منها 25 دقيقة. المختبرات صفحات إرشادية بالعربية: الهدف،
+والملفات، وخطوات بدقائقها وطلبات تُنسخ، وأسئلة تحقق، وتمرين إضافي ✱، وملاحظات للمدرب. لا كود يكتبه المشارك.
 
-All labs share one case study: **مركز الواحة للخدمات المشتركة** (Al-Waha Shared Services Center), a fictional center that
-runs HR, finance, procurement, IT and beneficiary services for six fictional government entities. Undergraduates play a
-co-op trainee at the center, and some labs have a student variant.
+كل المختبرات في جهة واحدة: **مركز الواحة للخدمات المشتركة**، مركز حكومي افتراضي. كل الأسماء والأرقام والجهات والعناوين
+البريدية وهمية.
 
-## Quick start
+## ما يحتاجه المشارك
 
-1. Open the [course page](../index.html) and pick a lab, or open `labs/D{day}_{n}_*.html` directly in a browser.
-2. Download the files the lab lists from [`files/`](files/). They are synthetic: every name, number and organisation is
-   fictional, and national IDs and mobiles only look real.
-3. Keep your copy of [`my_productivity_kit.xlsx`](files/my_productivity_kit.xlsx) open all week (task map, productivity log,
-   prompt library).
+- متصفح، وحساب مجاني في مساعد ذكاء اصطناعي عام واحد على الأقل. الخطط المجانية تكفي، ولا يُنزَّل أي نموذج على الجهاز.
+- دفتر مستند إلى المصادر أو مساحة مشروع (اليوم 3)، ومساحة عمل للوكلاء ومنصة للبرمجة التوليدية (اليوم 4). لكل مختبر
+  بديل مكتوب في صفحته حين لا تتاح الأداة: مشروع في مساعد عام، أو ملف جاهز.
+- حزمة مكتبية لجداول البيانات والعروض.
+- سجل القياس: `files/my_productivity_kit.xlsx`، ويبقى مفتوحًا طوال المقرر.
 
-Free tiers are enough for most labs. Where a feature is limited or unavailable in the Kingdom, the guide names a fallback.
+## نقطة البداية والحل
 
-## Labs
+كل مختبر يبدأ من ملفات جاهزة ولا يعتمد على مختبر آخر في اليوم نفسه. حين يبني مختبر على يوم سابق، له ملف بديل في
+`files/start/` يبدأ منه من لم يكمل.
 
-| Day | Session | Guide | Main files |
+| المختبر | الصفحة | يبدأ من | الحل المرجعي |
 |---|---|---|---|
-| 1 | My task map and baseline | [`D1_1_task_map.html`](D1_1_task_map.html) | `my_productivity_kit.xlsx`, `inbox_week43.txt` |
-| 1 | Test the edges, then sanitise | [`D1_2_edges_and_safety.html`](D1_2_edges_and_safety.html) | `accommodation_request.docx`, `beneficiary_inquiries_q3.xlsx` |
-| 1 | From a vague request to a precise prompt (RICE) | [`D1_3_rice.html`](D1_3_rice.html) | `minutes_portal_committee.pdf` |
-| 1 | Context document and prompt library | [`D1_4_context_library.html`](D1_4_context_library.html) | `my_productivity_kit.xlsx` |
-| 2 | Clear the inbox | [`D2_1_inbox.html`](D2_1_inbox.html) | `inbox_week43.txt`, `report_excerpt_en.docx`, `glossary_en_ar.xlsx` |
-| 2 | From transcript to decisions | [`D2_2_transcript_quotes.html`](D2_2_transcript_quotes.html) | `meeting_transcript_sept_review.txt`, `quote_*.pdf`, `procurement_guide.pdf` |
-| 2 | Analyse the inquiries, repair the budget | [`D2_3_inquiries_budget.html`](D2_3_inquiries_budget.html) | `beneficiary_inquiries_q3.xlsx`, `training_budget_2026.xlsx`, `service_kpis_2026.xlsx` |
-| 2 | Decision deck in 25 minutes | [`D2_4_decision_deck.html`](D2_4_decision_deck.html) | `quarterly_report_q3_2026.pdf`, `visual_identity_guide.pdf` |
-| 3 | Research brief and verification log | [`D3_1_research_brief.html`](D3_1_research_brief.html) | none (deep research in two apps) |
-| 3 | Ask our policies (notebook) | [`D3_2_ask_our_policies.html`](D3_2_ask_our_policies.html) | `policy_flexible_work.pdf`, `hr_faq.pdf`, `procurement_guide.pdf`, `lecture_05_service_quality.pdf` |
-| 3 | Your custom assistant | [`D3_3_custom_assistant.html`](D3_3_custom_assistant.html) | `hr_faq.pdf`, `policy_flexible_work.pdf` |
-| 3 | Redesign the monthly report | [`D3_4_workflow_redesign.html`](D3_4_workflow_redesign.html) | `beneficiary_inquiries_q3.xlsx`, `inbox_week43.txt` |
-| 4 | Delegate the weekly bulletin to an agent | [`D4_1_bulletin_agent.html`](D4_1_bulletin_agent.html) | `circulars/` |
-| 4 | From idea to specification | [`D4_2_idea_to_spec.html`](D4_2_idea_to_spec.html) | none (PRD, SPEC, mock-ups, AGENTS.md) |
-| 4 | Build it | [`D4_3_build_it.html`](D4_3_build_it.html) | the documents from 4.2 |
-| 4 | Adoption plan and capstone plan | [`D4_4_adoption_plan.html`](D4_4_adoption_plan.html) | `my_productivity_kit.xlsx` |
-| 5 | Capstone: canvas, rubric, presentation | [`capstone.html`](capstone.html) | |
+| 1.1 | `D1_1_task_map.html` | `weekly_tasks.xlsx` | `solutions/D1_1_task_map.md` |
+| 1.2 | `D1_2_classify.html` | `document_register.xlsx`، `accommodation_request.docx` | `solutions/D1_2_classify.md` |
+| 1.3 | `D1_3_rice.html` | `minutes_portal_committee.pdf` | `solutions/D1_3_rice.md` |
+| 1.4 | `D1_4_context_library.html` | `start/context_sample.md` | `solutions/D1_4_context_library.md` |
+| 2.1 | `D2_1_letter.html` | `letter_points.txt`، `glossary_en_ar.xlsx` | `solutions/D2_1_letter.md` |
+| 2.2 | `D2_2_forms.html` | `forms/` (عشرون نموذجًا)، `hr_faq.pdf` | `solutions/D2_2_forms.md` |
+| 2.3 | `D2_3_reconcile.html` | `beneficiary_inquiries_q3_coded.xlsx` | `solutions/D2_3_reconcile.md` |
+| 2.4 | `D2_4_decision_deck.html` | `deck_brief.txt`، `quarterly_report_q3_2026.pdf` | `solutions/D2_4_decision_deck.md` |
+| 3.1 | `D3_1_research_brief.html` | `start/research_brief.txt`، `start/verification_log.csv`، `start/research_report_sample.md` | `solutions/D3_1_research_brief.md` |
+| 3.2 | `D3_2_ask_our_policies.html` | `policy_flexible_work.pdf`، `hr_faq.pdf`، `procurement_guide.pdf` | `solutions/D3_2_ask_our_policies.md` |
+| 3.3 | `D3_3_custom_assistant.html` | `frequent_questions.xlsx` | `solutions/D3_3_custom_assistant.md` |
+| 3.4 | `D3_4_workflow_redesign.html` | `monthly_report_workflow.xlsx` | `solutions/D3_4_workflow_redesign.md` |
+| 4.1 | `D4_1_agent_connector.html` | `start/agent_task.txt`، `shared_mailbox/`، `circulars/` | `solutions/D4_1_agent_connector.md` |
+| 4.2 | `D4_2_idea_to_spec.html` | `start/tracker_need.txt` | `solutions/D4_2_idea_to_spec.md` |
+| 4.3 | `D4_3_build_it.html` | `start/tracker_requirements.md`، `start/tracker_AGENTS.md` | `solutions/D4_3_build_it.md` |
+| 4.4 | `D4_4_adoption_plan.html` | `start/adoption_plan_template.md` | `solutions/D4_4_adoption_plan.md` |
 
-## File pack
-
-| File | What it is | Planted for the labs |
-|---|---|---|
-| `minutes_portal_committee.pdf` | Steering-committee minutes, 4 pages | 3 decisions, an undecided proposal, a task with no date, an escalation above the committee's limit |
-| `beneficiary_inquiries_q3.xlsx` | 458 written inquiries with personal data | 6 duplicate rows, inconsistent channel names, no topic column |
-| `quarterly_report_q3_2026.pdf` | Quarterly performance report, 12 pages with charts | Summary says satisfaction 84%, the KPI table says 81% |
-| `policy_flexible_work.pdf`, `procurement_guide.pdf`, `hr_faq.pdf` | Center policies | Grounding for the notebook and the custom assistant |
-| `quote_a_alofuq.pdf`, `quote_b_naseej.pdf`, `quote_c_rawasi.pdf` | Three supplier quotations | Hidden exclusions, hosting outside the Kingdom, escalation clauses, page references |
-| `inbox_week43.txt` | Eight emails | An angry beneficiary with personal data, an English invitation, phishing |
-| `report_excerpt_en.docx`, `glossary_en_ar.xlsx` | English excerpt and the center's glossary | Translation with fixed terms |
-| `meeting_transcript_sept_review.txt` | Automatic transcript, 40 minutes | A 28-minute untranscribed gap, one undecided item, a corrected figure |
-| `training_budget_2026.xlsx` | Training budget workbook | `#REF!`, a short `SUM` range, a hard-coded value, a text number, an inverted ratio |
-| `service_kpis_2026.xlsx` | Monthly KPIs per entity, January to September | Charts and trends |
-| `visual_identity_guide.pdf` | Short visual identity guide | Rules for images and slides |
-| `circulars/` | Six weekly circulars and a bulletin template | A duplicate, a cancellation, one restricted circular |
-| `accommodation_request.docx` | Workplace-accommodation request | Personal and health data to remove before upload |
-| `lecture_05_service_quality.pdf` | University lecture notes | Student variant of the notebook lab |
-| `my_productivity_kit.xlsx` | The participant's kit | Task map, productivity log with totals, prompt library |
-
-Answer keys for instructors are in [`instructor/answer_keys.md`](instructor/answer_keys.md).
-
-## Regenerating the files
-
-The pack is generated, so every participant and every answer key match. The Arabic content lives in
-[`tools/texts.py`](tools/texts.py), and [`tools/prepare_files.py`](tools/prepare_files.py) renders it:
+## تشغيل الحلول
 
 ```bash
-uv run labs/tools/prepare_files.py            # XLSX, DOCX, TXT, PDF and the answer keys
-uv run labs/tools/prepare_files.py --no-pdf   # without Chrome
+uv run labs/solutions/check.py            # كل المختبرات
+uv run labs/solutions/check.py 2.3 4.1    # بعضها
 ```
 
-PDFs are printed by headless Chrome for correct Arabic shaping. Set `CHROME=/path/to/chrome` if it is not found. The
-script warns when a page overflows A4.
+ملف واحد يعلن اعتمادياته، ويحتاج [uv](https://docs.astral.sh/uv/)، ويحتاج Node.js للمختبر 4.3. يطبع لكل مختبر ما أعاد
+حسابه و`PASS`، ولا يكتب شيئًا على القرص ولا يتصل بأي نموذج.
+
+**ما يُشغَّل فعلًا:** كل حساب على الملفات: مجاميع خريطة المهام، وإزالة البيانات الشخصية، وقراءة النماذج العشرين وتحويل
+التاريخ الهجري، وإعادة حساب الاستفسارات، ووجود كل رقم في صفحته من التقرير، ودليل كل إجابة في وثائق السياسات، وتوقيت
+سير العمل، وطبقة صلاحيات الوكيل، وفحوص القبول الثلاثة للنموذج الأولي.
+
+**ما يُشغَّل بنموذج بديل:** كل خطوة يؤديها المشارك في مساعد محادثة. النموذج البديل (`solutions/standin.json`) ردود
+مكتوبة فيها الأخطاء التي يقع فيها مساعد حقيقي، ليُظهر كل فحص أن خطوة التحقق في المختبر تلتقطها. لم تُشغَّل الحلول على
+نموذج حقيقي، ولم تُجرَّب المختبرات في أدوات البحث المعمق والدفاتر والوكلاء ومنصات البناء: هذه تتغير، ويجربها المدرب قبل
+كل دفعة.
+
+## الملفات
+
+| الملف | ما هو | المزروع فيه |
+|---|---|---|
+| `weekly_tasks.xlsx` | ست عشرة مهمة أسبوعية بأوقاتها | ست مهام خارج الحد المتعرج |
+| `document_register.xlsx` | سجل اثني عشر ملفًا وقواعد المركز | أربعة عام، وأربعة مقيد، وأربعة سري |
+| `accommodation_request.docx` | طلب تسهيلات وظيفية | بيانات شخصية وصحية تُزال قبل أي مساعد |
+| `minutes_portal_committee.pdf` | محضر لجنة من أربع صفحات | مقترح لم يُقر، ومهمة بلا موعد |
+| `letter_points.txt`، `glossary_en_ar.xlsx` | نقاط خطاب ومسرد المركز | أرقام تُطابق، ومصطلحات معتمدة |
+| `forms/` | عشرون نموذج طلب تدريب | تكلفة بالحروف، وتاريخ هجري، واعتماد فارغ، ومكرر، وتكلفة معدلة، وطلب فوق الحد |
+| `beneficiary_inquiries_q3_coded.xlsx` | 458 صفًا مرمّزًا | ستة صفوف مكررة، وتهجئتان للقناة الواحدة |
+| `beneficiary_inquiries_q3.xlsx` | الأصل ببيانات شخصية وهمية | يُصنَّف «سريًّا» ولا يدخل أي مساعد |
+| `quarterly_report_q3_2026.pdf`، `deck_brief.txt`، `visual_identity_guide.pdf` | تقرير ربعي من 12 صفحة، وموجز عرض، ودليل هوية | الرضا 84% في الملخص و81% في الجدول |
+| `policy_flexible_work.pdf`، `hr_faq.pdf`، `procurement_guide.pdf` | دليل الموظفين | تعارض في بداية مهلة التظلم؛ ولا ذكر لبدل العمل عن بعد |
+| `frequent_questions.xlsx` | عشرة أسئلة اختبار بإجاباتها | سؤال خارج المصادر، وافتراض خاطئ، وحالة تصعيد |
+| `monthly_report_workflow.xlsx` | عشر خطوات بأوقاتها | خطوتا تحقق وقتهما صفر في الطريقة الحالية |
+| `shared_mailbox/`، `circulars/` | خمس رسائل، وستة تعاميم وقالب نشرة | تعليمة مزروعة في الرسالة 03، وتعميم سري، وتعميم مكرر |
+| `start/` | نقاط بداية مكتوبة باليد | التقرير التدريبي فيه خمسة ادعاءات: اثنان يصمدان |
+| `quote_*.pdf`، `training_budget_2026.xlsx`، `service_kpis_2026.xlsx`، `inbox_week43.txt`، `meeting_transcript_sept_review.txt`، `report_excerpt_en.docx` | مواد للتمارين الإضافية ولسجل التصنيف | مفتاحها في `solutions/answer_key_files.md` |
+
+## إعادة توليد الملفات
+
+ملفات `files/` مولّدة ببذرة ثابتة، عدا `files/start/` المكتوب باليد. النصوص في `_tools/texts.py`، والمولّد:
+
+```bash
+uv run labs/_tools/prepare_files.py            # الجداول والمستندات والنصوص وملفات PDF ومفتاح الإجابات
+uv run labs/_tools/prepare_files.py --no-pdf   # دون متصفح Chrome
+```
+
+ملفات PDF يطبعها Chrome دون واجهة ليصح تشكيل العربية. إعادة التوليد تعيد كتابة `solutions/answer_key_files.md`.

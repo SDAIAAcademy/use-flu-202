@@ -76,7 +76,7 @@
   ],
   "case_study": {
     "name": "مركز الواحة للخدمات المشتركة",
-    "summary": "مركز الواحة للخدمات المشتركة مركز حكومي افتراضي يقدّم خدمات الموارد البشرية والمالية والمشتريات وخدمة المستفيدين لست جهات حكومية. يؤدي الموظفون أدوارهم كما هي، ويؤدي الطلاب دور متدرّب تعاوني في المركز، ولأغلب التمارين بديل دراسي. كل الملفات اصطناعية: محاضر، وتقارير، وسياسات، وعروض أسعار، وبريد، وجداول، فيها مشكلات مقصودة تشبه الواقع، ولا تكشف بيانات أي شخص أو جهة حقيقية."
+    "summary": "مركز الواحة للخدمات المشتركة مركز حكومي افتراضي يقدّم خدمات الموارد البشرية والمالية والمشتريات وخدمة المستفيدين لست جهات حكومية. يعمل المشارك موظفًا في إدارة خدمة المستفيدين مع نورة مديرة الإدارة وماجد ولمى وبندر وسارة، ويهيئ «مُرشد»، مساعد أسئلة الموظفين. كل الملفات اصطناعية ومولّدة ببذرة ثابتة: خطابات ومحاضر وتقارير وسياسات، وعشرون نموذج طلب تدريب، وجدول استفسارات مرمّز، وصندوق بريد ومجلد تعاميم مشتركان في أحدهما تعليمة مزروعة. فيها مشكلات مقصودة تشبه الواقع، ولها مفتاح إجابة للمدرب، ولا تكشف بيانات أي شخص أو جهة حقيقية."
   },
   "format": "intensive",
   "format_note": "دورة مكثفة: 4 أيام تدريبية في كل منها أربع جلسات ويوم للمشروع الختامي، مع عمل تحضيري موجه ومهمة متابعة متعقَّبة مدتها 30 يومًا",
@@ -891,6 +891,99 @@
       "examples": [
         "قالب جدول بيانات مشترك",
         "نموذج لتتبع الوقت"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "group": "أدلة الإنتاجية والقياس",
+      "items": [
+        {
+          "title": "Stanford HAI: AI Index 2026, Chapter 4 (Economy)",
+          "url": "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf"
+        },
+        {
+          "title": "Dell'Acqua, Mollick et al.: Navigating the jagged technological frontier (Organization Science)",
+          "url": "https://pubsonline.informs.org/doi/full/10.1287/orsc.2025.21838"
+        },
+        {
+          "title": "METR: developer productivity study, 2026 update",
+          "url": "https://metr.org/blog/2026-02-24-uplift-update/"
+        },
+        {
+          "title": "Dillon, Jaffe, Immorlica, Stanton: Shifting work patterns with generative AI (NBER w33795)",
+          "url": "https://www.nber.org/papers/w33795"
+        },
+        {
+          "title": "Chatterji, Deming et al.: How people use ChatGPT (NBER w34255)",
+          "url": "https://www.nber.org/papers/w34255"
+        },
+        {
+          "title": "Anthropic Economic Index: economic primitives",
+          "url": "https://www.anthropic.com/research/economic-index-primitives"
+        },
+        {
+          "title": "BetterUp Labs and Stanford Social Media Lab: The hidden costs of workslop",
+          "url": "https://www.betterup.com/blog/hidden-costs-workslop"
+        },
+        {
+          "title": "Microsoft: Work Trend Index 2026",
+          "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization"
+        }
+      ]
+    },
+    {
+      "group": "المراجع الوطنية",
+      "items": [
+        {
+          "title": "سدايا: الأنظمة والسياسات (نظام حماية البيانات الشخصية، وسياسة تصنيف البيانات، ومبادئ أخلاقيات الذكاء الاصطناعي، وإرشادات الذكاء الاصطناعي التوليدي)",
+          "url": "https://sdaia.gov.sa/ar/SDAIA/about/Pages/RegulationsAndPolicies.aspx"
+        },
+        {
+          "title": "نظام حماية البيانات الشخصية",
+          "url": "https://sdaia.gov.sa/ar/SDAIA/about/Documents/PersonalDataProtectionLawAr.pdf"
+        },
+        {
+          "title": "مكتب إدارة البيانات الوطنية: سياسة تصنيف البيانات",
+          "url": "https://sdaia.gov.sa/en/SDAIA/about/Documents/DataClassificationPolicy.pdf"
+        },
+        {
+          "title": "سدايا: إرشادات الذكاء الاصطناعي التوليدي للجهات الحكومية",
+          "url": "https://sdaia.gov.sa/ar/SDAIA/about/Files/GenAIGuidelinesForGovernmentARCompressed.pdf"
+        },
+        {
+          "title": "سدايا: مبادئ أخلاقيات الذكاء الاصطناعي",
+          "url": "https://sdaia.gov.sa/ar/SDAIA/about/Documents/ai-principles.pdf"
+        },
+        {
+          "title": "سدايا: مركز المعرفة (دليل هندسة الأوامر، ودليل البرمجة التوليدية)",
+          "url": "https://sdaia.gov.sa/en/MediaCenter/KnowledgeCenter/ResearchLibrary/"
+        }
+      ]
+    },
+    {
+      "group": "الأطر والأساليب",
+      "items": [
+        {
+          "title": "Dakan, Feller and Anthropic: AI Fluency, Framework and Foundations (CC BY-NC-SA 4.0)",
+          "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations"
+        },
+        {
+          "title": "Caulfield: SIFT, the four moves of lateral reading",
+          "url": "https://writingcommons.org/section/information-literacy/information-evaluation/sift-stop-investigate-source-find-better-coverage-trace-claims/"
+        },
+        {
+          "title": "NIST AI 600-1: Generative AI profile",
+          "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"
+        },
+        {
+          "title": "AGENTS.md: the agent instruction file convention",
+          "url": "https://agents.md/"
+        },
+        {
+          "title": "CFO Dive: the 2025 Australian government report with AI-generated errors",
+          "url": "https://www.cfodive.com/news/deloitte-refunds-60k-report-ai-errors-australian-government-accounting/"
+        }
       ]
     }
   ]

@@ -1,6 +1,6 @@
-# رفع الإنتاجية بالذكاء الاصطناعي: notes for coding agents
+# إنتاجية العمل المعرفي بالذكاء الاصطناعي: notes for coding agents
 
-This repository is one SDAIA Academy course: **رفع الإنتاجية بالذكاء الاصطناعي** (`productivity`). It holds content only.
+This repository is one SDAIA Academy course: **إنتاجية العمل المعرفي بالذكاء الاصطناعي** (`productivity`). It holds content only.
 The SDAIA Academy engine (major version 1) turns it into a static site: slide decks
 with speaker notes and a presenter view, the course page, lab pages, a practice page and Markdown
 for AI assistants. The repository is public, and so is everything in it.
