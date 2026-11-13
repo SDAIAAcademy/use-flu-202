@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["openpyxl>=3.1", "python-docx>=1.1", "pypdf>=5.0"]
+# dependencies = ["openpyxl>=3.1", "python-docx>=1.1", "pypdf>=5.0", "hijridate>=2.5"]
 # ///
 """Run the reference solution of every lab and check it against the course files.
 
@@ -181,6 +181,182 @@ def lab_1_4():
         print(f"  {fields['الاسم']}: {len(ph)} placeholders, {words(fields['الأمر'])} words")
     sample = (FILES / "start" / "context_sample.md").read_text(encoding="utf-8")
     assert words(sample.split("\n\n", 2)[2]) < 150
+
+# =============================================================== Day 2
+def inquiries(dedupe=True):
+    head, rows = sheet_rows(FILES / "beneficiary_inquiries_q3_coded.xlsx")
+    recs = [dict(zip(head, r)) for r in rows]
+    if dedupe:
+        seen, out = set(), []
+        for r in recs:
+            if r["رقم الطلب"] not in seen:
+                seen.add(r["رقم الطلب"])
+                out.append(r)
+        recs = out
+    return recs
+
+
+CHANNELS = {"البوابه": "البوابة", "بريد إلكتروني": "البريد الإلكتروني"}
+
+
+@lab("2.1")
+def lab_2_1():
+    rows = [r for r in inquiries() if r["الجهة"] == "هيئة المرجان للسياحة الساحلية" and r["تاريخ الاستلام"].startswith("2026-09")]
+    closed = [r["مدة المعالجة (يوم)"] for r in rows if r["مدة المعالجة (يوم)"] not in (None, "")]
+    n, c, avg = len(rows), len(closed), round(sum(closed) / len(closed), 1)
+    print(f"  recomputed from the coded file: {n} inquiries, {c} closed, average {avg} days")
+    points = (FILES / "letter_points.txt").read_text(encoding="utf-8")
+    for v in (f"{n} ", f"({c} ", f"{avg} "):
+        assert v in points, v
+    figures = [str(n), str(c), str(avg)]
+    letter, note, summary = ref("D2_1_letter.txt"), ref("D2_1_note.txt"), ref("D2_1_summary_en.txt")
+    for name, text in (("letter", letter), ("note", note), ("summary", summary)):
+        found = set(re.findall(r"\d+(?:\.\d+)?", text))
+        need = [f for f in figures if not (name == "note" and f == str(c))]
+        assert all(f in found for f in need), (name, need, found)
+    formal = ("سعادة", "تفضلوا بقبول", "إشارة إلى")
+    assert "إشارة إلى" in letter and not any(m in note for m in formal)
+    glossary = ("shared-service centre", "processing time")
+    assert words(summary) <= 80 and all(g in summary for g in glossary), words(summary)
+    print(f"  letter {words(letter)} words, note {words(note)} words, summary {words(summary)} words")
+    bad = STANDIN["2.1"]["summary_en"]
+    hedges = [w for w in ("reduced", "improved", "faster", "trend") if w in bad.lower()]
+    wrong = sorted(set(re.findall(r"\d+(?:\.\d+)?", bad)) - set(figures) - {"2026"})
+    print(f"  stand-in summary: certainty words {hedges}, figures not in the points {wrong}")
+    assert hedges and wrong
+
+
+def form_fields(path):
+    d = Document(path)
+    kv = {}
+    for t in d.tables:
+        for row in t.rows:
+            cells = [c.text.strip() for c in row.cells]
+            if len(cells) >= 2:
+                kv[cells[0]] = cells[1]
+    notes = " ".join(p.text for p in d.paragraphs)
+    return kv, notes
+
+
+def to_number(text, words_map):
+    digits = re.sub(r"[^\d]", "", text)
+    if digits:
+        return int(digits)
+    return words_map.get(text)
+
+
+def to_gregorian(text):
+    from hijridate import Hijri
+    months = {"محرم": 1, "صفر": 2, "ربيع الأول": 3, "ربيع الآخر": 4, "جمادى الأولى": 5, "جمادى الآخرة": 6, "رجب": 7,
+              "شعبان": 8, "رمضان": 9, "شوال": 10, "ذو القعدة": 11, "ذو الحجة": 12}
+    if "هـ" in text:
+        m = re.match(r"(\d+) (.+) (\d{4})هـ", text)
+        return Hijri(int(m.group(3)), months[m.group(2)], int(m.group(1))).to_gregorian().isoformat()
+    m = re.match(r"(\d+) نوفمبر (\d{4})م", text)
+    return f"{m.group(2)}-11-{int(m.group(1)):02d}"
+
+
+@lab("2.2")
+def lab_2_2():
+    words_map = json.loads(ref("D2_2_words.json"))
+    faq = " ".join(pdf_pages(FILES / "hr_faq.pdf"))
+    assert "12,000" in faq
+    cap = 12000
+    truth = {}
+    for path in sorted((FILES / "forms").glob("TR-2026-*.docx")):
+        kv, notes = form_fields(path)
+        cost = to_number(kv["التكلفة"], words_map)
+        revised = re.search(r"المعدلة[^:]*: ([\d,]+)", notes)
+        if revised:
+            cost = int(revised.group(1).replace(",", ""))
+        truth[kv["رقم الطلب"]] = {"emp": kv["الرقم الوظيفي"], "course": kv["اسم الدورة"],
+                                  "start": to_gregorian(kv["تاريخ البداية"]), "cost": cost,
+                                  "approved": kv["اعتماد المدير المباشر"]}
+    assert len(truth) == 20
+    seen, flags, dup = {}, [], []
+    for no, t in truth.items():
+        k = (t["emp"], t["course"], t["start"])
+        if k in seen:
+            flags.append(f"{no} duplicates {seen[k]}")
+            dup.append(no)
+        seen.setdefault(k, no)
+        if t["cost"] > cap:
+            flags.append(f"{no} cost {t['cost']:,} above {cap:,}")
+        if not t["approved"]:
+            flags.append(f"{no} has no manager approval")
+    print("  needs a decision:", "; ".join(flags))
+    assert len(flags) == 3
+    total = sum(t["cost"] for no, t in truth.items() if no not in dup)
+    print(f"  total cost of the {20 - len(dup)} distinct requests: {total:,}")
+    assert truth["TR-2026-307"]["start"] == "2026-11-16"
+    assert truth["TR-2026-318"]["cost"] == 7200 and truth["TR-2026-304"]["cost"] == 9500
+    errors = []
+    for row in STANDIN["2.2"]["extraction"]:
+        t = truth[row["no"]]
+        for f in ("start", "cost", "approved"):
+            if str(row[f]) != str(t[f]):
+                errors.append((row["no"], f))
+    print(f"  stand-in extraction: {len(errors)} wrong cells:", ", ".join(f"{n} {f}" for n, f in errors))
+    assert len(errors) == 4
+    sample = sorted(random.Random(5).sample(sorted(truth), 5))
+    in_sample = [e for e in errors if e[0] in sample]
+    rows = {r["no"]: r for r in STANDIN["2.2"]["extraction"]}
+    by_rule = [e for e in errors if (e[1] == "cost" and rows[e[0]]["cost"] in ("", None))
+               or (e[1] == "start" and not str(rows[e[0]]["start"]).startswith("2026-11"))]
+    rest = [e for e in errors if e not in in_sample and e not in by_rule]
+    print(f"  random sample {', '.join(x[-3:] for x in sample)} catches {len(in_sample)}: {in_sample}")
+    print(f"  column rules (empty cost, start outside November) catch {len(by_rule)}: {by_rule}")
+    print(f"  caught only by reading the form: {rest}")
+
+
+@lab("2.3")
+def lab_2_3():
+    raw = inquiries(dedupe=False)
+    rows = inquiries()
+    assert (len(raw), len(rows)) == (458, 452)
+    channel = Counter(CHANNELS.get(r["القناة"], r["القناة"]) for r in rows)
+    month = Counter(r["تاريخ الاستلام"][:7] for r in rows)
+    entity = Counter(r["الجهة"] for r in rows).most_common(1)[0]
+    days = [r["مدة المعالجة (يوم)"] for r in rows if r["مدة المعالجة (يوم)"] not in (None, "")]
+    avg = round(sum(days) / len(days), 1)
+    recomputed = {"total": len(rows), "portal": channel["البوابة"], "top_entity": entity[0],
+                  "september": month["2026-09"], "avg_days": avg}
+    print("  recomputed:", recomputed, "| channels:", dict(channel), "| months:", dict(sorted(month.items())))
+    report = " ".join(pdf_pages(FILES / "quarterly_report_q3_2026.pdf"))
+    assert "452" in report
+    claimed = STANDIN["2.3"]["summary_figures"]
+    wrong = 0
+    print("  reconciliation:")
+    for k, v in claimed.items():
+        ok = str(v) == str(recomputed[k])
+        wrong += not ok
+        print(f"    {k}: summary {v} | recomputed {recomputed[k]} | {'matches' if ok else 'corrected'}")
+    assert wrong == 3, wrong
+
+
+@lab("2.4")
+def lab_2_4():
+    pages = pdf_pages(FILES / "quarterly_report_q3_2026.pdf")
+
+    def check_outline(lines):
+        problems = []
+        for line in lines:
+            title, figure, page = [x.strip() for x in line.split("|")]
+            number = figure.strip("%")  # the PDF text keeps the digits; the percent sign may sit on either side
+            if figure and number not in pages[int(page) - 1]:
+                problems.append(f"{figure} not on page {page}")
+            if "الرضا" in title and (figure != "81%" or page != "3"):
+                problems.append(f"satisfaction must be the KPI table figure (81%, page 3), not {figure} on page {page}")
+        return problems
+
+    outline = [l for l in ref("D2_4_outline.txt").splitlines() if l.strip()]
+    assert len(outline) == 6
+    p = check_outline(outline)
+    print("  reference outline:", p or "every figure is on its cited page")
+    assert not p
+    bad = check_outline(STANDIN["2.4"]["outline"])
+    print("  stand-in outline:", bad)
+    assert bad
 
 
 def main(argv):
