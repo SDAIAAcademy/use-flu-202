@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["python-docx>=1.1", "xlsxwriter>=3.2"]
+# dependencies = ["python-docx>=1.1", "xlsxwriter>=3.2", "openpyxl>=3.1"]
 # ///
 """Generate the Al-Waha Shared Services Center file pack used by every lab (labs/files/).
 
@@ -36,6 +36,7 @@ from docx.shared import Pt, RGBColor
 
 sys.path.insert(0, str(Path(__file__).parent))
 import texts as T  # noqa: E402
+import pack2027  # noqa: E402
 
 LABS = Path(__file__).resolve().parents[1]
 OUT = LABS / "files"
@@ -701,6 +702,10 @@ def main() -> None:
     (OUT / "inbox_week43.txt").write_text("\n".join(inbox), encoding="utf-8", newline="\n")
     print("  files/meeting_transcript_sept_review.txt\n  files/inbox_week43.txt")
 
+    print("2027")
+    forms_truth = pack2027.write_all(OUT, write_docx, fix_zip_times, records)
+    pack2027.write_texts(OUT, records)
+
     if not args.no_pdf:
         chrome = find_chrome()
         if not chrome:
@@ -712,7 +717,6 @@ def main() -> None:
         write_pdf(OUT / "procurement_guide.pdf", doc_html(T.POLICY_PROCUREMENT["title"], T.POLICY_PROCUREMENT["pages"]), chrome)
         write_pdf(OUT / "hr_faq.pdf", doc_html("الأسئلة الشائعة للموظفين · الموارد البشرية", hr_faq_pages()), chrome)
         write_pdf(OUT / "visual_identity_guide.pdf", doc_html(T.IDENTITY["title"], identity_pages()), chrome)
-        write_pdf(OUT / "lecture_05_service_quality.pdf", doc_html(T.LECTURE["title"], T.LECTURE["pages"], header="جامعة افتراضية · كلية الإدارة"), chrome)
         for key, name in (("a", "quote_a_alofuq.pdf"), ("b", "quote_b_naseej.pdf"), ("c", "quote_c_rawasi.pdf")):
             q = T.QUOTES[key]
             write_pdf(OUT / name, doc_html(f"عرض {q['company']}", q["pages"], header=q["company"]), chrome)
@@ -766,6 +770,7 @@ def main() -> None:
           "application; C-2026-117 cancels an earlier circular.",
           "- Expected bulletin: action items 118 (update data by 31 Oct, all staff) and 120 (mandatory training 1–4 Nov, Beneficiary Services); "
           "for information 117 and 119; nothing from 121.", ""]
+    k += pack2027.key_lines(forms_truth, records) + [""]
     KEYS.write_text("\n".join(k) + "\n", encoding="utf-8", newline="\n")
     print(f"KEYS\n  {KEYS.relative_to(LABS)}")
 
