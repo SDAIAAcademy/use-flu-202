@@ -1,0 +1,42 @@
+[
+  {
+    "n": 1,
+    "cited": "report_excerpt_en.docx",
+    "tokens": [
+      "22%",
+      "once-only principle",
+      "were associated with"
+    ]
+  },
+  {
+    "n": 2,
+    "cited": "report_excerpt_en.docx",
+    "tokens": [
+      "35%"
+    ],
+    "weaker": "may reduce handling time"
+  },
+  {
+    "n": 3,
+    "cited": "report_excerpt_en.docx",
+    "tokens": [
+      "Accessibility audits",
+      "three times more"
+    ]
+  },
+  {
+    "n": 4,
+    "cited": "policy_flexible_work.pdf",
+    "tokens": [
+      "الثانية عشرة"
+    ]
+  },
+  {
+    "n": 5,
+    "cited": "hr_faq.pdf",
+    "tokens": [
+      "withdrew assistants",
+      "outdated answers"
+    ]
+  }
+]

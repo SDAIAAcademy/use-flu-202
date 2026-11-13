@@ -358,6 +358,136 @@ def lab_2_4():
     print("  stand-in outline:", bad)
     assert bad
 
+# =============================================================== Day 3
+_SOURCES: dict[str, str] = {}
+
+
+def source_text(name: str) -> str:
+    """The text of a pack document as compared here: normalised and lower case."""
+    if name not in _SOURCES:
+        path = FILES / name
+        text = docx_text(path) if name.endswith(".docx") else " ".join(pdf_pages(path))
+        _SOURCES[name] = norm(text).lower()
+    return _SOURCES[name]
+
+
+def has_all(name: str, tokens) -> bool:
+    text = source_text(name)
+    return all(norm(t).lower() in text for t in tokens)
+
+
+def numbers_in(text: str) -> set[str]:
+    return set(re.findall(r"\d[\d,]*", text))
+
+
+@lab("3.1")
+def lab_3_1():
+    for start in ("research_brief.txt", "verification_log.csv", "research_report_sample.md"):
+        assert (FILES / "start" / start).exists(), start
+    report = (FILES / "start" / "research_report_sample.md").read_text(encoding="utf-8")
+    listed = re.findall(r"^(\d)\. .+المصدر: (\S+?)\.$", report, flags=re.M)
+    claims = json.loads(ref("D3_1_claims.json"))
+    assert [(str(c["n"]), c["cited"]) for c in claims] == listed, listed  # the key follows the sample report
+    sources = sorted({c["cited"] for c in claims})
+    decisions = {}
+    for c in claims:
+        if has_all(c["cited"], c["tokens"]):
+            finding, decision = "the cited source supports it", "يُعتمد"
+        else:
+            elsewhere = [s for s in sources if s != c["cited"] and has_all(s, c["tokens"])]
+            if elsewhere:
+                finding, decision = f"not in the cited source; found in {elsewhere[0]}", "يُعدَّل"
+            elif c.get("weaker") and has_all(c["cited"], [c["weaker"]]):
+                finding, decision = f"the source only says \"{c['weaker']}\"", "يُعدَّل"
+            else:
+                finding, decision = "no source supports it", "يُحذف"
+        decisions[c["n"]] = decision
+        print(f"  claim {c['n']} ({c['cited']}): {finding} -> {decision}")
+    log = [l.split(",") for l in ref("D3_1_log.csv").strip().splitlines()[1:]]
+    assert {int(r[0]): r[-1] for r in log} == decisions, decisions  # the reference log reaches the same decisions
+    kept = Counter(decisions.values())
+    print("  decisions:", dict(kept))
+    assert kept == {"يُعتمد": 2, "يُعدَّل": 2, "يُحذف": 1}
+
+
+NOTEBOOK_SOURCES = ("policy_flexible_work.pdf", "hr_faq.pdf", "procurement_guide.pdf")
+
+
+@lab("3.2")
+def lab_3_2():
+    questions = json.loads(ref("D3_2_questions.json"))
+    assert Counter(q["type"] for q in questions) == {"عادي": 5, "خارج المصادر": 1, "تجميع": 1, "تعارض": 1, "افتراض خاطئ": 1}
+    for q in questions:
+        for doc, tokens in q["evidence"].items():
+            assert has_all(doc, tokens), (q["q"], doc, tokens)  # the evidence of every answer is in its source
+        for doc, tokens in q.get("absent", {}).items():
+            assert not has_all(doc, tokens), (q["q"], doc, tokens)
+    print(f"  {len(questions)} questions: the evidence of each answer is in its source")
+    all_numbers = set().union(*(numbers_in(source_text(s)) for s in NOTEBOOK_SOURCES))
+    outside = STANDIN["3.2"]["outside"]
+    invented = sorted(numbers_in(outside) - all_numbers)
+    print(f"  stand-in on the allowance: figures in no source {invented}")
+    assert invented == ["500"]
+    conflict = norm(STANDIN["3.2"]["conflict"])
+    both = norm("القرار") in conflict and norm("إبلاغ") in conflict
+    print(f"  stand-in on the grievance deadline: names both dates {both}")
+    assert not both  # it answers from one source and misses the planted conflict
+    reference = norm(ref("D3_2_answers.txt"))
+    assert norm("إبلاغ") in reference and norm("القرار") in reference and not (numbers_in(reference) - all_numbers)
+
+
+def grade(answer: str, rule: dict) -> bool:
+    text = norm(answer)
+    ok = all(norm(m) in text for m in rule["must"]) and not any(norm(m) in text for m in rule.get("must_not", []))
+    return ok and words(answer) <= rule.get("max_words", 80)
+
+
+@lab("3.3")
+def lab_3_3():
+    head, rows = sheet_rows(FILES / "frequent_questions.xlsx")
+    assert len(rows) == 10 and all(r[5] is None for r in rows)  # ten questions, the result columns empty
+    rubric = json.loads(ref("D3_3_rubric.json"))
+    for r in rows:
+        rule = rubric[str(r[0])]
+        assert has_all(rule["doc"], rule["evidence"]), (r[0], rule["evidence"])
+    print("  the evidence of the ten expected answers is in the reference files")
+    instructions = ref("D3_3_instructions.txt")
+    for part in ("المنتج", "العملية", "الأداء", "لا ", "التصعيد"):
+        assert part in instructions, part
+    before = STANDIN["3.3"]["before"]
+    assert len(before) == 10
+    failed = [n for n in range(1, 11) if not grade(before[n - 1], rubric[str(n)])]
+    print(f"  before the edit: {10 - len(failed)} of 10 pass; failed {failed}")
+    assert failed == [6, 8, 10], failed
+    after = STANDIN["3.3"]["after"]
+    still = [n for n in failed if not grade(after[str(n)], rubric[str(n)])]
+    print(f"  after one added rule: {10 - len(still)} of 10 pass; still failing {still}")
+    assert still == [8, 10], still
+
+
+@lab("3.4")
+def lab_3_4():
+    head, rows = sheet_rows(FILES / "monthly_report_workflow.xlsx", "خط الأساس")
+    steps = [r for r in rows if r[0]]
+    total_row = rows[-1]
+    assert len(steps) == 10 and total_row[2] == "=SUM(C2:C11)" and all(r[3] is None for r in steps)
+    baseline = {r[0]: r[2] for r in steps}
+    redesign = {}
+    who = {}
+    for line in ref("D3_4_redesign.csv").strip().splitlines()[1:]:
+        n, w, minutes = line.split(",")
+        redesign[int(n)], who[int(n)] = int(minutes), w
+    assert sorted(redesign) == sorted(baseline)
+    b, a = sum(baseline.values()), sum(redesign.values())
+    print(f"  baseline {b} min, redesign {a} min, saving {round(100 * (b - a) / b)}%")
+    print(f"  classification alone: {baseline[3]} -> {redesign[3]} min ({round(100 * (baseline[3] - redesign[3]) / baseline[3])}%)")
+    checking = (4, 6, 9)
+    cb, ca = sum(baseline[n] for n in checking), sum(redesign[n] for n in checking)
+    print(f"  checking steps 4, 6, 9: {cb} of {b} min ({round(100 * cb / b)}%) -> {ca} of {a} min ({round(100 * ca / a)}%)")
+    assert (b, a) == (245, 105) and (cb, ca) == (30, 55)
+    assert all(who[n] == "لي وحدي" for n in checking)  # the checks are not delegated to the assistant
+    print("  who:", dict(Counter(who.values())))
+
 
 def main(argv):
     wanted = argv or list(LABS_RUN)

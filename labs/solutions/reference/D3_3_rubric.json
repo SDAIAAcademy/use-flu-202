@@ -1,0 +1,113 @@
+{
+  "1": {
+    "doc": "hr_faq.pdf",
+    "evidence": [
+      "وثلاثون",
+      "عشر"
+    ],
+    "must": [
+      "35"
+    ]
+  },
+  "2": {
+    "doc": "hr_faq.pdf",
+    "evidence": [
+      "عطلة",
+      "قبله"
+    ],
+    "must": [
+      "آخر يوم عمل"
+    ]
+  },
+  "3": {
+    "doc": "policy_flexible_work.pdf",
+    "evidence": [
+      "يومان",
+      "أربعة"
+    ],
+    "must": [
+      "يومان",
+      "أربعة"
+    ]
+  },
+  "4": {
+    "doc": "policy_flexible_work.pdf",
+    "evidence": [
+      "التعاونيين"
+    ],
+    "must": [
+      "لا",
+      "المتدربين"
+    ]
+  },
+  "5": {
+    "doc": "policy_flexible_work.pdf",
+    "evidence": [
+      "مرفوضا",
+      "خمسة"
+    ],
+    "must": [
+      "مرفوض",
+      "التظلم"
+    ]
+  },
+  "6": {
+    "doc": "policy_flexible_work.pdf",
+    "evidence": [
+      "بدلات",
+      "مستقلة"
+    ],
+    "must": [
+      "لا تذكر"
+    ],
+    "must_not": [
+      "ريال",
+      "500"
+    ]
+  },
+  "7": {
+    "doc": "hr_faq.pdf",
+    "evidence": [
+      "12,000"
+    ],
+    "must": [
+      "12,000",
+      "اعتماد"
+    ]
+  },
+  "8": {
+    "doc": "policy_flexible_work.pdf",
+    "evidence": [
+      "يومان",
+      "محل"
+    ],
+    "must": [
+      "يومان",
+      "الإصدار الثاني"
+    ],
+    "must_not": [
+      "نعم"
+    ]
+  },
+  "9": {
+    "doc": "hr_faq.pdf",
+    "evidence": [
+      "المستفيدين",
+      "مرمزة"
+    ],
+    "must": [
+      "لا",
+      "مرمز"
+    ]
+  },
+  "10": {
+    "doc": "hr_faq.pdf",
+    "evidence": [
+      "4400"
+    ],
+    "must": [
+      "4400"
+    ],
+    "max_words": 40
+  }
+}
