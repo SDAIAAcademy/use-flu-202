@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-ax="lab" data-track="fluency">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المختبر 4.3 · ابنِ النموذج الأولي واختبره · إنتاجية العمل المعرفي بالذكاء الاصطناعي</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="D4_3_build_it.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo"></div><nav><a href="../index.html">صفحة المقرر</a><a href="../slides/day4.html#lab-4-3">العودة إلى الشرائح</a></nav></div>
+<span class="tag">المختبر 4.3</span>
+<h1>ابنِ النموذج الأولي واختبره</h1>
+<p>من وثيقة المتطلبات (وثيقتك، أو الوثيقة المرجعية المرفقة) إلى متتبع يعمل، يُختبر بالفحوص الثلاثة ويُسجل الاختبار.</p>
+<div class="meta"><span>25 دقيقة</span><span>اليوم 4</span><span>الجلسة 3: ابنِ واختبر وشارك</span></div>
+</div>
+</header>
+<main class="wrap">
+<article class="lab" data-lab="4.3">
+<div class="box goal">
+  <h3>ستخرج من هذا المختبر بـ</h3>
+  <ul>
+    <li>نموذج أولي يعمل لمتتبع طلبات حجز قاعات التدريب، مبني من وثيقة المتطلبات.</li>
+    <li>سجل اختبار بالفحوص الثلاثة: ما نجح وما فشل في كل نسخة.</li>
+    <li>مع وثيقتي المختبر السابق، هذا دليل الناتج السادس للمقرر: الوثيقة والنموذج وسجل الاختبار.</li>
+  </ul>
+</div>
+
+<h2>ما تحتاجه</h2>
+<div class="files">
+  <a href="files/start/tracker_requirements.md" target="_blank"><b>tracker_requirements.md</b><span>وثيقة المتطلبات المرجعية بفحوصها الثلاثة. ابدأ منها إن لم تكمل وثيقتك في المختبر 4.2.</span></a>
+  <a href="files/start/tracker_AGENTS.md" target="_blank"><b>tracker_AGENTS.md</b><span>ملف تعليمات الوكيل المرجعي.</span></a>
+</div>
+<p class="small">منصة للبرمجة التوليدية بخطتها المجانية: أداة تبني التطبيقات في المتصفح، أو وكيل برمجة في مساحة عمل معزولة. لا يتاح لك أي منهما؟ اطلب من مساعد عام صفحة واحدة تعمل في المتصفح، وافتحها من جهازك. بيانات تجريبية فقط.</p>
+
+<h2>الخطوات</h2>
+
+<div class="step">
+  <h3>1 · أول رسالة بالوثائق <span class="min">5 دقائق</span></h3>
+  <div class="prompt" data-tool="منصة البناء">ابنِ النموذج الأولي الموصوف في وثيقة المتطلبات التالية، والتزم بملف AGENTS.md التالي. واجهة عربية من اليمين إلى اليسار. لا تبنِ بعد: اعرض خطتك في خمس نقاط على الأكثر، واذكر ما ستتركه خارج النطاق، وانتظر موافقتي.
+
+<span class="ph">[وثيقة المتطلبات]</span>
+
+<span class="ph">[AGENTS.md]</span></div>
+  <p>راجع الخطة: هل أضافت وظيفة لم تطلبها؟ هل تطلب تسجيل دخول أو قاعدة بيانات خارجية؟ احذف ذلك، ثم وافق.</p>
+</div>
+
+<div class="step">
+  <h3>2 · عاين النسخة الأولى واحفظها <span class="min">3 دقائق</span></h3>
+  <p>جرّب طلبًا واحدًا صحيحًا: هل يظهر في «طلباتي»؟ ثم احفظ النسخة (نقطة حفظ أو نسخة من المشروع) قبل أي تعديل، لتعود إليها إن كسر تعديل شيئًا.</p>
+</div>
+
+<div class="step">
+  <h3>3 · ثلاثة تحسينات، واحدًا بعد واحد <span class="min">7 دقائق</span></h3>
+  <p>اطلب تحسينًا واحدًا في كل رسالة، وجرّبه قبل التالي. مثلًا: رسالة خطأ أوضح، ثم ترتيب الطلبات باليوم، ثم لون لكل حالة.</p>
+  <table>
+    <tr><th>وصف لا يساعد</th><th>وصف يساعد</th></tr>
+    <tr><td>«الحجز لا يعمل، أصلحه، وغيّر الألوان، وأضف تقويمًا»</td><td>«تعديل واحد: حين تكون ساعة النهاية قبل ساعة البداية يُسجَّل الطلب. المتوقع: رفضه برسالة تقول السبب»</td></tr>
+  </table>
+</div>
+
+<div class="step">
+  <h3>4 · الفحوص الثلاثة وسجل الاختبار <span class="min">7 دقائق</span></h3>
+  <p>نفّذ فحوص القبول الثلاثة بيدك، كما هي مكتوبة في الوثيقة، واملأ السجل:</p>
+  <table>
+    <tr><th>الفحص</th><th>ما فعلته</th><th>ما حدث</th><th>نجح؟</th></tr>
+    <tr><td>1 · منع التعارض</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>2 · المدخلات الخاطئة</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td>3 · الأدوار</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+  </table>
+  <div class="callout warn"><b>لا تثق بقول المنصة «اختبرته ويعمل»:</b> الفحص ما نفذته أنت بيدك ورأيت نتيجته. والشكل الجميل لا يدل على أن التعارض ممنوع.</div>
+</div>
+
+<div class="step">
+  <h3>5 · أصلح خللًا واحدًا بوصف دقيق <span class="min">3 دقائق</span></h3>
+  <p>اختر فحصًا فشل، وصِفه وحده: ماذا فعلت، وماذا توقعت، وماذا حدث. ثم أعد الفحوص الثلاثة كلها، فالإصلاح قد يكسر ما كان يعمل. اكتب النتيجة في السجل نسخة ثانية.</p>
+  <p class="small">نجحت الثلاثة من أول مرة؟ جرّب حالة حدّية: طلب يبدأ في الساعة التي ينتهي فيها طلب آخر. يجب أن يُقبل.</p>
+</div>
+
+<div class="step stretch">
+  <h3>✱ تمرين إضافي: طلب بجملة</h3>
+  <p>أضف حقلًا يكتب فيه الموظف طلبه بجملة («قاعة ب يوم الثلاثاء من 9 إلى 11 لتدريب البوابة») فيعبّئ النموذج، ويبقى التأكيد للموظف. ثم أعد الفحوص الثلاثة.</p>
+</div>
+
+<h2>أسئلة تحقق</h2>
+<ol class="checks">
+  <li>أي فحص فشل في نسختك الأولى؟ وهل كان سيظهر لو نظرت إلى الشكل فقط؟</li>
+  <li>مع من ستشارك النموذج، وبأي بيانات؟ ومن يقرر نشره في بيئة الإنتاج؟</li>
+  <li>لماذا نعيد الفحوص الثلاثة كلها بعد إصلاح خلل واحد؟</li>
+</ol>
+
+<details class="instructor">
+  <summary>للمدرب</summary>
+  <ul>
+    <li>الحل المرجعي: <code>labs/solutions/D4_3_build_it.md</code>. النموذج المرجعي في <code>labs/solutions/reference/tracker/</code>: صفحة واحدة تعمل من الجهاز، وقواعدها في ملف يختبره Node بالفحوص الثلاثة.</li>
+    <li>في تشغيل الحل: النسخة الأولى (نموذج بديل لا يفحص التعارض) نجحت في فحصين من ثلاثة وفشلت في منع التعارض؛ والنموذج المرجعي نجح في الثلاثة. هذا ما يحدث كثيرًا في القاعة: الشكل سليم والتعارض مقبول.</li>
+    <li>المشاركة: فريق المراجعة فقط، وببيانات تجريبية. النشر في بيئة الإنتاج لفريق تقنية المعلومات، وهذا مكتوب في «خارج النطاق».</li>
+    <li>المنصات تختلف وتتغير؛ إن تعطلت منصة فالبديل صفحة واحدة يكتبها مساعد عام وتُفتح من الجهاز.</li>
+  </ul>
+</details>
+</article>
+<nav class="pager"><a href="D4_2_idea_to_spec.html" rel="prev">→ المختبر السابق</a><a href="D4_4_adoption_plan.html" rel="next">المختبر التالي ←</a></nav>
+</main>
+<footer><div class="wrap">أكاديمية سدايا · مسار الطلاقة في البيانات والذكاء الاصطناعي · إنتاجية العمل المعرفي بالذكاء الاصطناعي<br><span class="muted">إصدار المقرر 2027.1.0 · المحرّك 1.0.0 · بُني في ⁦2026-11-15⁩ · الإيداع e6b67ba</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T03:18:53Z","version":"2027.1.0","commit":"e6b67ba"},"course":{"id":"use-flu-202","code":"USE-FLU-202","title":"إنتاجية العمل المعرفي بالذكاء الاصطناعي","track":"fluency","lang":"ar","dir":"rtl","url":"https://sdaiaacademy.github.io/use-flu-202/","repo":"SDAIAAcademy/use-flu-202","home":"../index.html"},"lab":{"id":"4.3","title":"ابنِ النموذج الأولي واختبره","summary":"من وثيقة المتطلبات (وثيقتك، أو الوثيقة المرجعية المرفقة) إلى متتبع يعمل، يُختبر بالفحوص الثلاثة ويُسجل الاختبار.","minutes":25,"day":4,"unit":"اليوم 4","session":3,"deck":"../slides/day4.html#lab-4-3","prev":"D4_2_idea_to_spec.html","next":"D4_4_adoption_plan.html","alt":{}},"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":null,"llms":"../llms.txt"},"tasks":[],"tools":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

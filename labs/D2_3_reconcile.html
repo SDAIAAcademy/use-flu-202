@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-ax="lab" data-track="fluency">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المختبر 2.3 · حلّل الاستفسارات وطابق كل رقم · إنتاجية العمل المعرفي بالذكاء الاصطناعي</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="D2_3_reconcile.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo"></div><nav><a href="../index.html">صفحة المقرر</a><a href="../slides/day2.html#lab-2-3">العودة إلى الشرائح</a></nav></div>
+<span class="tag">المختبر 2.3</span>
+<h1>حلّل الاستفسارات وطابق كل رقم</h1>
+<p>جدول استفسارات الربع الثالث: تطلب وصفه، ثم تحليله برسم وملخص، ثم تعيد حساب كل رقم في الملخص بجدول محوري وتطابقه.</p>
+<div class="meta"><span>25 دقيقة</span><span>اليوم 2</span><span>الجلسة 3: الجداول والتحقق من الأرقام</span></div>
+</div>
+</header>
+<main class="wrap">
+<article class="lab" data-lab="2.3">
+<div class="box goal">
+  <h3>ستخرج من هذا المختبر بـ</h3>
+  <ul>
+    <li>رسم واحد وملخص من خمسة أرقام عن استفسارات الربع الثالث، أنتجهما المساعد بالكود.</li>
+    <li>جدول مطابقة: كل رقم في الملخص مقابل رقم أعدت حسابه بنفسك في جدول محوري، وحكم «مطابق» أو «مصحَّح».</li>
+  </ul>
+</div>
+
+<h2>ما تحتاجه</h2>
+<div class="files">
+  <a href="files/beneficiary_inquiries_q3_coded.xlsx" download><b>beneficiary_inquiries_q3_coded.xlsx</b><span>458 صفًا مرمّزة: لا أسماء ولا هويات ولا جوالات. هذه نقطة البداية، وهي الملف الذي يجوز أن يدخل المساعد.</span></a>
+  <a href="files/quarterly_report_q3_2026.pdf" target="_blank"><b>quarterly_report_q3_2026.pdf</b><span>الصفحة 6: الاستفسارات المكتوبة كما صنّفها الفريق يدويًا.</span></a>
+</div>
+<p class="small">مساعد يشغّل الكود على الملفات (تحليل البيانات)، وجدول بيانات بجداول محورية. لا يحتاج المختبر شيئًا من مختبر سابق.</p>
+
+<h2>الخطوات</h2>
+
+<div class="step">
+  <h3>1 · الوصف قبل أي تحليل <span class="min">3 دقائق</span></h3>
+  <div class="prompt" data-tool="مساعد يشغّل الكود + الملف">قبل أي تحليل، صف هذا الملف: عدد الصفوف، وعدد أرقام الطلبات الفريدة، والقيم المختلفة في عمود القناة وعدد كل منها، والقيم الفارغة في كل عمود. احسب بالكود واعرض الكود.</div>
+  <p>دوّن: هل وجد صفوفًا مكررة؟ هل لاحظ أن «البوابة» و«البوابه» قناة واحدة؟</p>
+</div>
+
+<div class="step">
+  <h3>2 · التحليل بالكود ورسم واحد <span class="min">7 دقائق</span></h3>
+  <div class="prompt" data-tool="المحادثة نفسها">احذف الصفوف المكررة برقم الطلب، ووحّد أسماء القنوات المتشابهة. ثم احسب بالكود: عدد الاستفسارات لكل شهر، ولكل قناة، ولكل جهة، ومتوسط مدة المعالجة للطلبات المغلقة. ارسم رسمًا واحدًا يقول رسالة واحدة: أي جهة تأتي منها أكثر الاستفسارات. اعرض الكود والجداول التي حسبتها.</div>
+</div>
+
+<div class="step">
+  <h3>3 · ملخص من خمسة أرقام <span class="min">4 دقائق</span></h3>
+  <div class="prompt" data-tool="المحادثة نفسها">اكتب ملخصًا لمديرة الإدارة من خمس جمل، في كل جملة رقم واحد من الجداول التي حسبتها، ولا رقم من غيرها.</div>
+</div>
+
+<div class="step">
+  <h3>4 · أعد الحساب وطابق <span class="min">8 دقائق</span></h3>
+  <p>افتح الملف في جدول البيانات. احذف المكرر (إزالة التكرارات على عمود رقم الطلب)، ثم أنشئ جدولًا محوريًا لكل رقم في الملخص. املأ جدول المطابقة:</p>
+  <table>
+    <tr><th>الرقم في الملخص</th><th>ما أعدت حسابه</th><th>الحكم</th></tr>
+    <tr><td class="fill">مثلًا: إجمالي الاستفسارات</td><td class="fill"></td><td class="fill">مطابق · مصحَّح</td></tr>
+  </table>
+  <p class="small">لا رقم يبقى في الملخص دون صف في هذا الجدول. ما لا يطابق يُصحَّح في الملخص، لا في الجدول.</p>
+</div>
+
+<div class="step">
+  <h3>5 · سجّل ما صحّحته <span class="min">3 دقائق</span></h3>
+  <p>في سجل القياس: الوقت، وعدد الأرقام التي طابقت من أول مرة، وعدد ما صحّحته.</p>
+</div>
+
+<div class="step stretch">
+  <h3>✱ تمرين إضافي: الميزانية الموروثة</h3>
+  <p>افتح <code>training_budget_2026.xlsx</code> واطلب من المساعد شرح كل صيغة قبل إصلاحها. كم خطأً وجدت؟ وأيها يغيّر رقمًا في التقرير الربعي (ص 8)؟</p>
+</div>
+
+<h2>أسئلة تحقق</h2>
+<ol class="checks">
+  <li>كم استفسارًا فريدًا في الملف، وكم صفًا مكررًا؟</li>
+  <li>ما الرقم الذي تغيّر أكثر بعد توحيد أسماء القنوات؟</li>
+  <li>لماذا لا يكفي أن يعرض المساعد الكود لتثق بالرقم؟</li>
+</ol>
+
+<details class="instructor">
+  <summary>للمدرب</summary>
+  <ul>
+    <li>الأرقام المرجعية من إعادة الحساب في <code>labs/solutions/D2_3_reconcile.md</code>: 458 صفًا، و452 طلبًا فريدًا، و6 مكررة.</li>
+    <li>في تشغيل الحل، حسب ملخص النموذج البديل الإجمالي بالمكرر (458)، وعدّ «البوابة» دون «البوابه»، وحسب المتوسط مع الطلبات قيد المعالجة؛ والمطابقة التقطت الثلاثة.</li>
+    <li>الصفحة 6 في التقرير تقول 452 أيضًا: من يطابق بالتقرير يلتقط خطأ الإجمالي حتى دون جدول محوري.</li>
+  </ul>
+</details>
+</article>
+<nav class="pager"><a href="D2_2_forms.html" rel="prev">→ المختبر السابق</a><a href="D2_4_decision_deck.html" rel="next">المختبر التالي ←</a></nav>
+</main>
+<footer><div class="wrap">أكاديمية سدايا · مسار الطلاقة في البيانات والذكاء الاصطناعي · إنتاجية العمل المعرفي بالذكاء الاصطناعي<br><span class="muted">إصدار المقرر 2027.1.0 · المحرّك 1.0.0 · بُني في ⁦2026-11-15⁩ · الإيداع e6b67ba</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T03:18:53Z","version":"2027.1.0","commit":"e6b67ba"},"course":{"id":"use-flu-202","code":"USE-FLU-202","title":"إنتاجية العمل المعرفي بالذكاء الاصطناعي","track":"fluency","lang":"ar","dir":"rtl","url":"https://sdaiaacademy.github.io/use-flu-202/","repo":"SDAIAAcademy/use-flu-202","home":"../index.html"},"lab":{"id":"2.3","title":"حلّل الاستفسارات وطابق كل رقم","summary":"جدول استفسارات الربع الثالث: تطلب وصفه، ثم تحليله برسم وملخص، ثم تعيد حساب كل رقم في الملخص بجدول محوري وتطابقه.","minutes":25,"day":2,"unit":"اليوم 2","session":3,"deck":"../slides/day2.html#lab-2-3","prev":"D2_2_forms.html","next":"D2_4_decision_deck.html","alt":{}},"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":null,"llms":"../llms.txt"},"tasks":[],"tools":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

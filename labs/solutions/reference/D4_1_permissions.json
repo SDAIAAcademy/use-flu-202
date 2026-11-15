@@ -1,0 +1,18 @@
+{
+  "connector": "مجلد العمل المشترك (موصِّل واحد)",
+  "read": [
+    "shared_mailbox/",
+    "circulars/"
+  ],
+  "deny_read": [
+    "circulars/C-2026-121_22oct.docx"
+  ],
+  "write": [
+    "drafts/"
+  ],
+  "send": "approval",
+  "approver": "نورة",
+  "allowed_recipients": [
+    "beneficiary-services@alwaha-ssc.example"
+  ]
+}

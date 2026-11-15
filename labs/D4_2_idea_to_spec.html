@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-ax="lab" data-track="fluency">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المختبر 4.2 · وثيقة المتطلبات وملف تعليمات الوكيل · إنتاجية العمل المعرفي بالذكاء الاصطناعي</title>
+<meta name="generator" content="SDAIA Academy engine 1.0.0">
+<link rel="icon" href="../_engine/icon.svg">
+<link rel="alternate" type="text/markdown" href="D4_2_idea_to_spec.md">
+<link rel="describedby" href="../llms.txt">
+<link rel="stylesheet" href="../_engine/academy.css">
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><div class="logo"></div><nav><a href="../index.html">صفحة المقرر</a><a href="../slides/day4.html#lab-4-2">العودة إلى الشرائح</a></nav></div>
+<span class="tag">المختبر 4.2</span>
+<h1>وثيقة المتطلبات وملف تعليمات الوكيل</h1>
+<p>متتبع طلبات حجز قاعات التدريب في المركز: من الأسئلة الستة إلى وثيقة متطلبات بثلاثة فحوص قبول، وملف AGENTS.md لمنصة البناء.</p>
+<div class="meta"><span>25 دقيقة</span><span>اليوم 4</span><span>الجلسة 2: من الفكرة إلى المتطلبات</span></div>
+</div>
+</header>
+<main class="wrap">
+<article class="lab" data-lab="4.2">
+<div class="box goal">
+  <h3>ستخرج من هذا المختبر بـ</h3>
+  <ul>
+    <li>وثيقة متطلبات من صفحة واحدة لمتتبع طلبات حجز قاعات التدريب، فيها ثلاثة فحوص قبول.</li>
+    <li>ملف تعليمات الوكيل <code>AGENTS.md</code> الذي يحكم عمل منصة البناء معك.</li>
+    <li>الوثيقتان هما النصف الأول من دليل الناتج السادس للمقرر، ويكتمل في المختبر التالي.</li>
+  </ul>
+</div>
+
+<h2>ما تحتاجه</h2>
+<div class="files">
+  <a href="files/start/tracker_need.txt" target="_blank"><b>tracker_need.txt</b><span>حاجة الفريق كما كتبتها منسقة التدريب. هذه نقطة البداية.</span></a>
+</div>
+<p class="small">مساعد عام. لا يحتاج المختبر شيئًا من مختبر سابق، ولا تُبنى فيه أي أداة: الوثائق أولًا.</p>
+
+<h2>الخطوات</h2>
+
+<div class="step">
+  <h3>1 · الأسئلة الستة بنفسك <span class="min">4 دقائق</span></h3>
+  <p>اقرأ الحاجة، وأجب في سطر عن كل سؤال، قبل أن تسأل أي مساعد:</p>
+  <table>
+    <tr><th>السؤال</th><th>إجابتك</th></tr>
+    <tr><td>1 · ما المشكلة، ولمن؟</td><td class="fill"></td></tr>
+    <tr><td>2 · من يستخدم الأداة، وماذا يرى كل منهم؟</td><td class="fill"></td></tr>
+    <tr><td>3 · ماذا تفعل الأداة؟ ثلاث وظائف على الأكثر</td><td class="fill"></td></tr>
+    <tr><td>4 · ما البيانات، وهل فيها ما لا يلزم؟</td><td class="fill"></td></tr>
+    <tr><td>5 · ما الذي لن تفعله؟</td><td class="fill"></td></tr>
+    <tr><td>6 · كيف تعرف أنها تعمل؟</td><td class="fill"></td></tr>
+  </table>
+</div>
+
+<div class="step">
+  <h3>2 · دع المساعد يستجوبك <span class="min">6 دقائق</span></h3>
+  <div class="prompt" data-tool="مساعد عام">أنا موظف غير تقني، وأريد وثيقة متطلبات لأداة داخلية صغيرة. هذه حاجة الفريق وإجاباتي عن ستة أسئلة:
+<span class="ph">[الصق tracker_need.txt وإجاباتك]</span>
+لا تكتب الوثيقة بعد. اسألني سؤالًا واحدًا في كل مرة، حتى ستة أسئلة، عن القرارات التي لم أتخذها: الحالات الحدّية، ومن يرى ماذا، وما يحدث عند الخطأ. بعد كل جواب لخّص ما فهمته في سطر.</div>
+  <p>كل سؤال يسأله قرار كان سيتخذه هو بافتراض لو لم يسأل. دوّن سؤالًا واحدًا لم يخطر لك.</p>
+</div>
+
+<div class="step">
+  <h3>3 · وثيقة المتطلبات وفحوص القبول <span class="min">7 دقائق</span></h3>
+  <div class="prompt" data-tool="المحادثة نفسها">اكتب الآن وثيقة المتطلبات بالعربية في صفحة واحدة، بهذه الأقسام: المشكلة، والمستخدمون، والوظائف، والبيانات، والقيود، وخارج النطاق، وفحوص القبول.
+في «فحوص القبول» اكتب ثلاثة فحوص بالضبط، لكل فحص: الخطوات التي أنفذها بيدي، والنتيجة المتوقعة. في «خارج النطاق» اكتب أن النشر في بيئة الإنتاج لفريق تقنية المعلومات. بيانات تجريبية فقط.</div>
+  <p>اقرأ الفحوص الثلاثة: هل تستطيع تنفيذ كل منها بيدك في دقيقة؟ فحص مثل «الأداة سهلة الاستخدام» ليس فحصًا: أعد كتابته.</p>
+</div>
+
+<div class="step">
+  <h3>4 · ملف تعليمات الوكيل <span class="min">5 دقائق</span></h3>
+  <div class="prompt" data-tool="المحادثة نفسها">اكتب ملف AGENTS.md لمنصة البناء التي ستبني هذه الأداة. أنا غير تقني وأفضّل العربية. يتضمن: كيف تشرح لي التغييرات، وأن تعرض خطتها قبل البناء، وتعديلًا واحدًا في كل رسالة، وبيانات تجريبية فقط، وإعادة فحوص القبول الثلاثة بعد كل تعديل، وما لا تفعله: لا نشر للعموم، ولا ربط بأنظمة، ولا حذف.</div>
+</div>
+
+<div class="step">
+  <h3>5 · احفظ الوثيقتين <span class="min">3 دقائق</span></h3>
+  <p>احفظ الوثيقتين في مجلد المشروع بالاسمين <code>requirements.md</code> و<code>AGENTS.md</code>. سطر في سجل القياس: الوقت، وعدد القرارات التي كشفها استجواب المساعد.</p>
+</div>
+
+<div class="step stretch">
+  <h3>✱ تمرين إضافي: نقد من مساعد آخر</h3>
+  <div class="prompt" data-tool="مساعد آخر">هذه وثيقة متطلبات لأداة داخلية صغيرة. انقدها كمراجع من تقنية المعلومات: ما الناقص؟ ما الغامض؟ ما الخطر على البيانات؟ ثلاث ملاحظات على الأكثر، مرتبة بالأهمية.</div>
+</div>
+
+<h2>أسئلة تحقق</h2>
+<ol class="checks">
+  <li>ما القرار الذي كشفه استجواب المساعد ولم يكن في إجاباتك الست؟</li>
+  <li>اقرأ فحصك الأول على زميل: هل يستطيع تنفيذه دون أن يسألك؟</li>
+  <li>ماذا كتبت في «خارج النطاق»، ولماذا هو أهم قسم للنموذج الأولي؟</li>
+</ol>
+
+<details class="instructor">
+  <summary>للمدرب</summary>
+  <ul>
+    <li>الحل المرجعي: <code>labs/solutions/D4_2_idea_to_spec.md</code>. الوثيقتان المرجعيتان في <code>labs/files/start/tracker_requirements.md</code> و<code>labs/files/start/tracker_AGENTS.md</code>، وهما نقطة بداية المختبر 4.3 لمن لم يكمل.</li>
+    <li>الفحوص المرجعية الثلاثة: منع التعارض، والمدخلات الخاطئة، والأدوار. الكود يتحقق أن الوثيقة فيها الأقسام السبعة وثلاثة فحوص لكل منها خطوات ونتيجة متوقعة، ويلتقط وثيقة بديلة من سطر واحد («أداة سهلة وجميلة») لا قسم فيها ولا فحص.</li>
+    <li>الخطأ الشائع: فحوص لا تُنفَّذ («سريعة»، «آمنة»)، ووظائف كثيرة. ثلاث وظائف تكفي نموذجًا أوليًا.</li>
+  </ul>
+</details>
+</article>
+<nav class="pager"><a href="D4_1_agent_connector.html" rel="prev">→ المختبر السابق</a><a href="D4_3_build_it.html" rel="next">المختبر التالي ←</a></nav>
+</main>
+<footer><div class="wrap">أكاديمية سدايا · مسار الطلاقة في البيانات والذكاء الاصطناعي · إنتاجية العمل المعرفي بالذكاء الاصطناعي<br><span class="muted">إصدار المقرر 2027.1.0 · المحرّك 1.0.0 · بُني في ⁦2026-11-15⁩ · الإيداع e6b67ba</span></div></footer>
+<script type="application/json" id="academy-data">{"v":1,"engine":"1.0.0","build":{"at":"2026-11-15T03:18:53Z","version":"2027.1.0","commit":"e6b67ba"},"course":{"id":"use-flu-202","code":"USE-FLU-202","title":"إنتاجية العمل المعرفي بالذكاء الاصطناعي","track":"fluency","lang":"ar","dir":"rtl","url":"https://sdaiaacademy.github.io/use-flu-202/","repo":"SDAIAAcademy/use-flu-202","home":"../index.html"},"lab":{"id":"4.2","title":"وثيقة المتطلبات وملف تعليمات الوكيل","summary":"متتبع طلبات حجز قاعات التدريب في المركز: من الأسئلة الستة إلى وثيقة متطلبات بثلاثة فحوص قبول، وملف AGENTS.md لمنصة البناء.","minutes":25,"day":4,"unit":"اليوم 4","session":2,"deck":"../slides/day4.html#lab-4-2","prev":"D4_1_agent_connector.html","next":"D4_3_build_it.html","alt":{}},"ai":{"context":{"course":"../context/course.md","courseJs":"../context/course.js","day":null,"llms":"../llms.txt"},"tasks":[],"tools":[]},"features":{},"strings":{}}</script>
+<script src="../_engine/academy.js"></script>
+</body>
+</html>

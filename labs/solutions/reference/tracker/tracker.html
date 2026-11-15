@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>متتبع طلبات حجز قاعات التدريب: نموذج أولي</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #f6f3ec; color: #1e3a5f; }
+  main { max-width: 860px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.3rem; color: #0f766e; }
+  form, table, .bar { background: #fff; border-radius: 8px; padding: 12px; margin-block: 12px; }
+  form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+  label { display: grid; gap: 4px; font-size: .9rem; }
+  input, select, button { font: inherit; padding: 6px; }
+  button { background: #0f766e; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: start; padding: 6px; border-bottom: 1px solid #e5e0d3; font-size: .9rem; }
+  #msg { min-height: 1.5em; font-weight: 600; }
+  #msg.bad { color: #b42318; }
+  .note { font-size: .8rem; color: #555; }
+</style>
+</head>
+<body>
+<main>
+  <h1>متتبع طلبات حجز قاعات التدريب</h1>
+  <p class="note">نموذج أولي ببيانات تجريبية. لا يُحفظ شيء بعد إغلاق الصفحة، ولا يُنشر في بيئة الإنتاج.</p>
+  <div class="bar">
+    <label>أنا
+      <select id="user">
+        <option value="ماجد|موظف">ماجد (موظف)</option>
+        <option value="لمى|موظف">لمى (موظف)</option>
+        <option value="سارة|منسقة التدريب">سارة (منسقة التدريب)</option>
+      </select>
+    </label>
+  </div>
+  <form id="form">
+    <label>القاعة <select id="room"></select></label>
+    <label>اليوم
+      <select id="day"><option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option><option>الأربعاء</option><option>الخميس</option></select>
+    </label>
+    <label>من الساعة <input id="from" type="number" min="8" max="15" value="9"></label>
+    <label>إلى الساعة <input id="to" type="number" min="9" max="16" value="11"></label>
+    <label>الغرض <input id="purpose" type="text"></label>
+    <button type="submit">قدّم الطلب</button>
+  </form>
+  <p id="msg" role="status"></p>
+  <table>
+    <thead><tr><th>رقم</th><th>مقدّم الطلب</th><th>القاعة</th><th>اليوم</th><th>من</th><th>إلى</th><th>الغرض</th><th>الحالة</th><th></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</main>
+<script src="tracker.js"></script>
+<script>
+  const store = Tracker.createStore();
+  const $ = (id) => document.getElementById(id);
+  const user = () => { const [name, role] = $('user').value.split('|'); return { name, role }; };
+  for (const room of Tracker.ROOMS) $('room').add(new Option(room, room));
+  function say(text, bad) { $('msg').textContent = text; $('msg').className = bad ? 'bad' : ''; }
+  function render() {
+    const me = user();
+    const body = $('rows');
+    body.textContent = '';
+    for (const r of store.listFor(me)) {
+      const tr = body.insertRow();
+      for (const v of [r.id, r.by, r.room, r.day, r.from, r.to, r.purpose, r.status]) tr.insertCell().textContent = v;
+      const cell = tr.insertCell();
+      if (me.role === Tracker.COORDINATOR && r.status === 'جديد') {
+        for (const status of ['معتمد', 'مرفوض']) {
+          const b = document.createElement('button');
+          b.textContent = status === 'معتمد' ? 'اعتماد' : 'رفض';
+          b.onclick = () => { store.decide(me, r.id, status); render(); };
+          cell.append(b, ' ');
+        }
+      }
+    }
+  }
+  $('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const result = store.add({ by: user().name, room: $('room').value, day: $('day').value,
+      from: Number($('from').value), to: Number($('to').value), purpose: $('purpose').value.trim() });
+    say(result.ok ? 'سُجّل الطلب رقم ' + result.request.id : result.error, !result.ok);
+    render();
+  });
+  $('user').addEventListener('change', render);
+  render();
+</script>
+</body>
+</html>
