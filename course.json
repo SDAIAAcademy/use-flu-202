@@ -1,7 +1,7 @@
 {
   "$schema": "https://sdaiaacademy.github.io/engine/schemas/course.schema.json",
   "engine": "1",
-  "id": "productivity",
+  "id": "use-flu-202",
   "code": "USE-FLU-202",
   "version": "2027.1.0",
   "lang": "ar",
@@ -21,8 +21,8 @@
     "التجهيز: متصفح، وحساب مجاني في مساعد ذكاء اصطناعي عام واحد على الأقل، ودفتر مستند إلى المصادر، ومنصة برمجة توليدية بخطتها المجانية. لا يُنزَّل أي نموذج على الجهاز."
   ],
   "site": {
-    "url": "https://sdaiaacademy.github.io/productivity/",
-    "repo": "SDAIAAcademy/productivity"
+    "url": "https://sdaiaacademy.github.io/use-flu-202/",
+    "repo": "SDAIAAcademy/use-flu-202"
   },
   "outcomes": [
     {

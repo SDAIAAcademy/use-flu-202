@@ -11,7 +11,7 @@ AI Productivity for Knowledge Work
 
 **الصيغة:** دورة مكثفة: 4 أيام تدريبية في كل منها أربع جلسات ويوم للمشروع الختامي، مع عمل تحضيري موجه ومهمة متابعة متعقَّبة مدتها 30 يومًا
 
-**صفحة المقرر:** https://sdaiaacademy.github.io/productivity/
+**صفحة المقرر:** https://sdaiaacademy.github.io/use-flu-202/
 <!-- /academy:title -->
 
 ## دراسة الحالة
